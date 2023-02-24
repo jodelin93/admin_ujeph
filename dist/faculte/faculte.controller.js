@@ -115,6 +115,7 @@ __decorate([
 ], FaculteController.prototype, "remove", null);
 FaculteController = __decorate([
     (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiTags)('Facultes'),
     (0, common_1.Controller)('faculte'),
     __metadata("design:paramtypes", [faculte_service_1.FaculteService])
 ], FaculteController);

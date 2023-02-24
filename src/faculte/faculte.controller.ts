@@ -2,10 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from 
 import { FaculteService } from './faculte.service';
 import { CreateFaculteDto } from './dto/create-faculte.dto';
 import { UpdateFaculteDto } from './dto/update-faculte.dto';
-import { ApiBearerAuth, ApiCreatedResponse, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 
 @ApiBearerAuth()
+@ApiTags('Facultes')
 @Controller('faculte')
 export class FaculteController {
   constructor(private readonly faculteService: FaculteService) {}
