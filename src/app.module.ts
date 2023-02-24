@@ -8,6 +8,7 @@ import { TeachersModule } from './teachers/teachers.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './commons/common.module';
+import { FaculteModule } from './faculte/faculte.module';
 
 @Module({
   imports: [
@@ -16,14 +17,15 @@ import { CommonModule } from './commons/common.module';
       type: 'mysql',
       host: process.env.DATABASE_HOST,
       port: +process.env.DATABASE_PORT,
-      username: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_NAME,
+      username: process.env.DATABASE_USER_PROD,
+      password: process.env.DATABASE_PASSWORD_PROD,
+      database: process.env.DATABASE_NAME_PROD,
       logging: false,
-      autoLoadEntities: true
+      autoLoadEntities: true,
+      synchronize:true
     }),
     EmployeesModule,
-    StudentsModule,TeachersModule,UsersModule, AuthModule,CommonModule 
+    StudentsModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule 
   ],
   controllers: [],
   providers: [],

@@ -16,6 +16,7 @@ const teachers_module_1 = require("./teachers/teachers.module");
 const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
 const common_module_1 = require("./commons/common.module");
+const faculte_module_1 = require("./faculte/faculte.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -26,14 +27,15 @@ AppModule = __decorate([
                 type: 'mysql',
                 host: process.env.DATABASE_HOST,
                 port: +process.env.DATABASE_PORT,
-                username: process.env.DATABASE_USER,
-                password: process.env.DATABASE_PASSWORD,
-                database: process.env.DATABASE_NAME,
+                username: process.env.DATABASE_USER_PROD,
+                password: process.env.DATABASE_PASSWORD_PROD,
+                database: process.env.DATABASE_NAME_PROD,
                 logging: false,
-                autoLoadEntities: true
+                autoLoadEntities: true,
+                synchronize: true
             }),
             employees_module_1.EmployeesModule,
-            students_module_1.StudentsModule, teachers_module_1.TeachersModule, users_module_1.UsersModule, auth_module_1.AuthModule, common_module_1.CommonModule
+            students_module_1.StudentsModule, teachers_module_1.TeachersModule, users_module_1.UsersModule, auth_module_1.AuthModule, common_module_1.CommonModule, faculte_module_1.FaculteModule
         ],
         controllers: [],
         providers: [],
