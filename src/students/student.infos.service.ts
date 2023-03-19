@@ -1,3 +1,4 @@
+import { UpdateStudentInfoDto } from './dto/update-infos.student.dto';
 import { NotFoundException } from '@nestjs/common';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -41,15 +42,16 @@ export class StudentInfoService extends AbstracService {
     return this.studentInfoRepo.save(studentInfo);
     }
     
-    async updateinfoStudent(id: number, data:any): Promise<any> {
+    async updateinfoStudent(id: number, data:UpdateStudentInfoDto): Promise<any> {
         const findData = await this.findOne({ studentId:id });
         if (!findData) {
             throw new NotFoundException(`data not found`)
         }
+        
+      const savedStudentInfos = await this.studentInfoRepo.preload({ id:findData.id,...data })
+      console.log(savedStudentInfos);
+      
+      return await this.studentInfoRepo.save(savedStudentInfos);
     
-        const convertData = Object.assign(findData, data);
-    
-        await this.studentInfoRepo.update(id, data);
-        return convertData;
     }
 }
