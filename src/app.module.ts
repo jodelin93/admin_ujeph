@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './commons/common.module';
 import { FaculteModule } from './faculte/faculte.module';
+import { ImmatriculationModule } from './immatriculation/immatriculation.module';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { FaculteModule } from './faculte/faculte.module';
       synchronize:true
     }),
     EmployeesModule,
-    StudentsModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule 
+    StudentsModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule, ImmatriculationModule 
   ],
   controllers: [],
   providers: [],

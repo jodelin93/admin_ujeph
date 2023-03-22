@@ -1,6 +1,6 @@
 import { UpdateStudentInfoDto } from './dto/update-infos.student.dto';
 import { NotFoundException } from '@nestjs/common';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AbstracService } from 'src/commons/abstract.service';
 import { Repository } from 'typeorm';
