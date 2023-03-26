@@ -1,3 +1,4 @@
+import { Immatriculation } from 'src/immatriculation/entities/immatriculation.entity';
 export declare enum DEGREE {
     LICENCE = "licence",
     MAITRISE = "maitrise",
@@ -15,4 +16,5 @@ export declare class Faculte {
     nombre_matiere: number;
     createdAt: Date;
     updatedAt: Date;
+    immatriculation: Immatriculation;
 }

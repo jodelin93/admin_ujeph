@@ -11,6 +11,8 @@ import { CommonModule } from './commons/common.module';
 import { FaculteModule } from './faculte/faculte.module';
 import { ImmatriculationModule } from './immatriculation/immatriculation.module';
 
+
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -23,10 +25,9 @@ import { ImmatriculationModule } from './immatriculation/immatriculation.module'
       database: process.env.DATABASE_NAME_PROD,
       logging: false,
       autoLoadEntities: true,
-      synchronize:true
     }),
     EmployeesModule,
-    StudentsModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule, ImmatriculationModule 
+    StudentsModule,ImmatriculationModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule,  
   ],
   controllers: [],
   providers: [],

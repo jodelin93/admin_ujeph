@@ -21,12 +21,21 @@ const typeorm_2 = require("typeorm");
 const roles_entity_1 = require("./entities/roles.entity");
 const user_entity_1 = require("./entities/user.entity");
 const bcrypt = require("bcryptjs");
+const faker_1 = require("@faker-js/faker");
 let UsersService = class UsersService extends abstract_service_1.AbstracService {
     constructor(personService, userRepo, roleRepo) {
         super(userRepo);
         this.personService = personService;
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
+    }
+    createRandomUser() {
+        return {
+            email: 'Emerson93@yahoo.com',
+            username: faker_1.faker.name.middleName('female'),
+            password: 'jodelin',
+            role_name: 'ADMIN',
+        };
     }
     async create(createUserDto) {
         const person = await this.personService.findOnePersonByEmail(createUserDto.email);

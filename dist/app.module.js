@@ -17,6 +17,7 @@ const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
 const common_module_1 = require("./commons/common.module");
 const faculte_module_1 = require("./faculte/faculte.module");
+const immatriculation_module_1 = require("./immatriculation/immatriculation.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -32,10 +33,9 @@ AppModule = __decorate([
                 database: process.env.DATABASE_NAME_PROD,
                 logging: false,
                 autoLoadEntities: true,
-                synchronize: true
             }),
             employees_module_1.EmployeesModule,
-            students_module_1.StudentsModule, teachers_module_1.TeachersModule, users_module_1.UsersModule, auth_module_1.AuthModule, common_module_1.CommonModule, faculte_module_1.FaculteModule
+            students_module_1.StudentsModule, immatriculation_module_1.ImmatriculationModule, teachers_module_1.TeachersModule, users_module_1.UsersModule, auth_module_1.AuthModule, common_module_1.CommonModule, faculte_module_1.FaculteModule,
         ],
         controllers: [],
         providers: [],

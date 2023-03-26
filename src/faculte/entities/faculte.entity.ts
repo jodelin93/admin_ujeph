@@ -1,7 +1,9 @@
+import { Immatriculation } from 'src/immatriculation/entities/immatriculation.entity';
 import {
     Column,
     CreateDateColumn,
     Entity,
+    OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
   } from 'typeorm';
@@ -42,6 +44,9 @@ import {
   
     @UpdateDateColumn()
     updatedAt: Date;
+
+    @OneToOne(()=>Immatriculation,(immatriculation)=>immatriculation.student)
+    immatriculation: Immatriculation;
   
     
   }
