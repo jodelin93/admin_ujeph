@@ -10,6 +10,8 @@ import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './commons/common.module';
 import { FaculteModule } from './faculte/faculte.module';
 import { ImmatriculationModule } from './immatriculation/immatriculation.module';
+import { CourseModule } from './course/course.module';
+
 
 
 
@@ -18,16 +20,15 @@ import { ImmatriculationModule } from './immatriculation/immatriculation.module'
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DATABASE_HOST,
+      host: process.env.DATABASE_HOST_PROD,
       port: +process.env.DATABASE_PORT,
-      username: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_NAME,
-      logging: false,
-      synchronize:true,
+      username: process.env.DATABASE_USER_PROD,
+      password: process.env.DATABASE_PASSWORD_PROD,
+      database: process.env.DATABASE_NAME_PROD,
       autoLoadEntities: true,
+      synchronize:true
     }),
-    EmployeesModule,
+    EmployeesModule,CourseModule,
     StudentsModule,ImmatriculationModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule,  
   ],
   controllers: [],

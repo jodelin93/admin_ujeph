@@ -30,8 +30,8 @@ export class FaculteService extends AbstracService {
     return await super.findOne({id});
   }
 
-  async update(id: number, faculteRepo: UpdateFaculteDto) {
-    const faculte = await this.faculteRepo.preload({ id, ...faculteRepo });
+  async update(id: number, faculteDto: UpdateFaculteDto) {
+    const faculte = await this.faculteRepo.preload({ id, ...faculteDto });
     return   await this.faculteRepo.save(faculte);
   }
 

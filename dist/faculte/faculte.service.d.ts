@@ -8,6 +8,6 @@ export declare class FaculteService extends AbstracService {
     create(createFaculteDto: any): Promise<any>;
     find(): Promise<any[]>;
     findOne(id: number): Promise<any>;
-    update(id: number, faculteRepo: UpdateFaculteDto): Promise<Faculte>;
+    update(id: number, faculteDto: UpdateFaculteDto): Promise<Faculte>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }
