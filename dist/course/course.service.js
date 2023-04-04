@@ -12,42 +12,39 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FaculteService = void 0;
+exports.CourseService = void 0;
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
 const abstract_service_1 = require("../commons/abstract.service");
+const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const faculte_entity_1 = require("./entities/faculte.entity");
-let FaculteService = class FaculteService extends abstract_service_1.AbstracService {
-    constructor(faculteRepo) {
-        super(faculteRepo);
-        this.faculteRepo = faculteRepo;
+const courses_entity_1 = require("./entities/courses.entity");
+let CourseService = class CourseService extends abstract_service_1.AbstracService {
+    constructor(courseRepo) {
+        super(courseRepo);
+        this.courseRepo = courseRepo;
     }
-    async create(createFaculteDto) {
-        const faculte = await this.faculteRepo.findOne({ where: { nom_faculte: createFaculteDto.nom_faculte } });
-        if (faculte) {
-            throw new common_1.BadRequestException("Faculte Existante");
+    async create(createCourseDto) {
+        const course = await this.courseRepo.findOne({ where: { nom_cours: createCourseDto.nom_cours } });
+        if (course) {
+            throw new common_1.BadRequestException("cours Existant");
         }
-        return await this.faculteRepo.save(createFaculteDto);
-    }
-    async find() {
-        return await super.find();
+        return await this.courseRepo.save(createCourseDto);
     }
     async findOne(id) {
         return await super.findOne({ id });
     }
-    async update(id, faculteDto) {
-        const faculte = await this.faculteRepo.preload(Object.assign({ id }, faculteDto));
-        return await this.faculteRepo.save(faculte);
+    async update(id, updateCourseDto) {
+        const courseSaved = await this.courseRepo.preload(Object.assign({ id }, updateCourseDto));
+        return await this.courseRepo.save(courseSaved);
     }
     async remove(id) {
-        return await this.faculteRepo.delete(id);
+        return await this.courseRepo.delete(id);
     }
 };
-FaculteService = __decorate([
+CourseService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(faculte_entity_1.Faculte)),
+    __param(0, (0, typeorm_1.InjectRepository)(courses_entity_1.Courses)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], FaculteService);
-exports.FaculteService = FaculteService;
-//# sourceMappingURL=faculte.service.js.map
+], CourseService);
+exports.CourseService = CourseService;
+//# sourceMappingURL=course.service.js.map
