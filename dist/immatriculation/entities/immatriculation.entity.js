@@ -34,7 +34,15 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Immatriculation.prototype, "degre", void 0);
+], Immatriculation.prototype, "degree", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Immatriculation.prototype, "faculteId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Immatriculation.prototype, "studentId", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => student_entity_1.Student, (student) => student.immatriculation),
     (0, typeorm_1.JoinColumn)(),
@@ -43,7 +51,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.OneToOne)(() => faculte_entity_1.Faculte, (faculte) => faculte.immatriculation),
     (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", student_entity_1.Student)
+    __metadata("design:type", faculte_entity_1.Faculte)
 ], Immatriculation.prototype, "faculte", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),

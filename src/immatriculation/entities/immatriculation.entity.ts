@@ -16,9 +16,13 @@ export class Immatriculation {
     vacation: string
     
     @Column()
-    degre: string
+    degree: string
 
-  
+    @Column()
+    faculteId: number
+    
+    @Column()
+    studentId:number
 
     @OneToOne(() => Student, (student) => student.immatriculation)
     @JoinColumn()
@@ -26,7 +30,7 @@ export class Immatriculation {
 
     @OneToOne(() => Faculte, (faculte) => faculte.immatriculation)
     @JoinColumn()
-    faculte: Student;
+    faculte: Faculte;
     
     @CreateDateColumn()
     createdAt: Date;

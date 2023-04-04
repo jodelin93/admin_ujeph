@@ -5,28 +5,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImmatriculationService = void 0;
 const common_1 = require("@nestjs/common");
-let ImmatriculationService = class ImmatriculationService {
-    create(createImmatriculationDto) {
-        return 'This action adds a new immatriculation';
+const typeorm_1 = require("@nestjs/typeorm");
+const abstract_service_1 = require("../commons/abstract.service");
+const Repository_1 = require("typeorm/repository/Repository");
+const immatriculation_entity_1 = require("./entities/immatriculation.entity");
+let ImmatriculationService = class ImmatriculationService extends abstract_service_1.AbstracService {
+    constructor(immatriculationRepo) {
+        super(immatriculationRepo);
+        this.immatriculationRepo = immatriculationRepo;
     }
-    findAll() {
-        return `This action returns all immatriculation`;
-    }
-    findOne(id) {
-        return `This action returns a #${id} immatriculation`;
-    }
-    update(id, updateImmatriculationDto) {
-        return `This action updates a #${id} immatriculation`;
-    }
-    remove(id) {
-        return `This action removes a #${id} immatriculation`;
+    createImmatriculation(faculteId, studentId, createImmatriculationDto) {
+        const immatriculationData = Object.assign({ faculteId, studentId }, createImmatriculationDto);
+        return this.immatriculationRepo.save(immatriculationData);
     }
 };
 ImmatriculationService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(immatriculation_entity_1.Immatriculation)),
+    __metadata("design:paramtypes", [Repository_1.Repository])
 ], ImmatriculationService);
 exports.ImmatriculationService = ImmatriculationService;
 //# sourceMappingURL=immatriculation.service.js.map

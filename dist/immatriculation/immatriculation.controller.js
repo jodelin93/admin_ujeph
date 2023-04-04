@@ -17,15 +17,17 @@ const common_1 = require("@nestjs/common");
 const immatriculation_service_1 = require("./immatriculation.service");
 const create_immatriculation_dto_1 = require("./dto/create-immatriculation.dto");
 const update_immatriculation_dto_1 = require("./dto/update-immatriculation.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ImmatriculationController = class ImmatriculationController {
     constructor(immatriculationService) {
         this.immatriculationService = immatriculationService;
     }
-    create(createImmatriculationDto) {
-        return this.immatriculationService.create(createImmatriculationDto);
+    create(studentId, faculteId, createImmatriculationDto) {
+        console.log(studentId);
+        console.log(faculteId);
+        return this.immatriculationService.createImmatriculation(faculteId, studentId, createImmatriculationDto);
     }
     findAll() {
-        return this.immatriculationService.findAll();
     }
     findOne(id) {
         return this.immatriculationService.findOne(+id);
@@ -38,10 +40,27 @@ let ImmatriculationController = class ImmatriculationController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Post)(':studentId/:faculteId'),
+    (0, swagger_1.ApiParam)({
+        name: 'studentId',
+        type: 'number',
+        description: 'id etudiant'
+    }),
+    (0, swagger_1.ApiParam)({
+        name: 'faculteId',
+        type: 'number',
+        description: 'id faculte'
+    }),
+    (0, swagger_1.ApiOperation)({ description: 'this is the endpoint for Creating  a immatriculation' }),
+    (0, swagger_1.ApiCreatedResponse)({
+        description: 'The record has been successfully created.',
+        type: create_immatriculation_dto_1.CreateImmatriculationDto,
+    }),
+    __param(0, (0, common_1.Param)('studentId')),
+    __param(1, (0, common_1.Param)('faculteId')),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_immatriculation_dto_1.CreateImmatriculationDto]),
+    __metadata("design:paramtypes", [Number, Number, create_immatriculation_dto_1.CreateImmatriculationDto]),
     __metadata("design:returntype", void 0)
 ], ImmatriculationController.prototype, "create", null);
 __decorate([
@@ -74,6 +93,8 @@ __decorate([
 ], ImmatriculationController.prototype, "remove", null);
 ImmatriculationController = __decorate([
     (0, common_1.Controller)('immatriculation'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiTags)('Immatriculation'),
     __metadata("design:paramtypes", [immatriculation_service_1.ImmatriculationService])
 ], ImmatriculationController);
 exports.ImmatriculationController = ImmatriculationController;
