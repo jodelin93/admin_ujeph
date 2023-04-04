@@ -52,9 +52,9 @@ let StudentInfoService = class StudentInfoService extends abstract_service_1.Abs
         if (!findData) {
             throw new common_1.NotFoundException(`data not found`);
         }
-        const savedStudentInfos = await this.studentInfoRepo.preload(Object.assign({ id: findData.id }, data));
-        console.log(savedStudentInfos);
-        return await this.studentInfoRepo.save(savedStudentInfos);
+        const convertData = Object.assign(findData, data);
+        await this.studentInfoRepo.update(id, data);
+        return convertData;
     }
 };
 StudentInfoService = __decorate([

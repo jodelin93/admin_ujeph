@@ -87,9 +87,6 @@ let StudentsService = class StudentsService extends abstract_service_1.AbstracSe
             return student;
         }
     }
-    async search(data) {
-        return await this.studentRepo.query("select * from person inner join student on person.id=student.personId where code like '%" + data + "%' or nom like '%" + data + "%' or prenom like '%" + data + "%' ");
-    }
 };
 StudentsService = __decorate([
     (0, common_1.Injectable)(),

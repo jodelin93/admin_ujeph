@@ -83,10 +83,5 @@ export class StudentsService extends AbstracService {
       return student;
     }
     }
-
-    async search(data: any): Promise<any[]>{
-      return await this.studentRepo.query("select * from person inner join student on person.id=student.personId where code like '%" + data + "%' or nom like '%" + data + "%' or prenom like '%" + data + "%' ");
-      
-  }
    
 }

@@ -10,7 +10,6 @@ export declare class UsersService extends AbstracService {
     private userRepo;
     private roleRepo;
     constructor(personService: PersonsService, userRepo: Repository<User>, roleRepo: Repository<Roles>);
-    createRandomUser(): CreateUserDto;
     create(createUserDto: CreateUserDto): Promise<User>;
     findOneById(id: number): Promise<User>;
     findOneUser(uuid: string, relations?: any[]): Promise<any>;

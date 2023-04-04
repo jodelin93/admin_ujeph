@@ -14,8 +14,11 @@ import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import {
+  ApiBadRequestResponse,
   ApiBearerAuth,
   ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiNotFoundResponse,
   ApiOperation,
   ApiParam,
   ApiResponse,
@@ -109,18 +112,5 @@ export class StudentsController {
   })
   remove(@Param('uuid') uuid: string) {
     return this.studentsService.removeOneStudent(uuid);
-  }
-
-  @Get('/search/:data')
-  @ApiParam({
-    name: 'data',
-      type: 'string',
-    description:'data to filter upon'
-  })
-  @ApiOperation({
-    description: 'this is the endpoint for searching data',
-  })
-  search(@Param('data') data: string) {
-    return this.studentsService.search(data);
   }
 }

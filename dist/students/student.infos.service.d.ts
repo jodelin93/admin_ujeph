@@ -1,4 +1,3 @@
-import { UpdateStudentInfoDto } from './dto/update-infos.student.dto';
 import { AbstracService } from 'src/commons/abstract.service';
 import { Repository } from 'typeorm';
 import { CreateStudentInfoDto } from './dto/create-infos-students.dto';
@@ -10,5 +9,5 @@ export declare class StudentInfoService extends AbstracService {
     constructor(studentInfoRepo: Repository<StudentInformationsCompementaires>, studentService: StudentsService);
     createRandomUser(): CreateStudentInfoDto;
     createinfoStudent(idStudent: number, data: CreateStudentInfoDto): Promise<any>;
-    updateinfoStudent(id: number, data: UpdateStudentInfoDto): Promise<any>;
+    updateinfoStudent(id: number, data: any): Promise<any>;
 }

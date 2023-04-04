@@ -4,11 +4,11 @@ import { AbstracService } from 'src/commons/abstract.service';
 import { PersonsService } from 'src/persons/persons.service';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { Roles } from './entities/roles.entity';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcryptjs';
 import { UpdateUserRoleDto } from './dto/update-user.role.dto';
-import { faker } from '@faker-js/faker';
 
 @Injectable()
 export class UsersService extends AbstracService {
@@ -19,47 +19,32 @@ export class UsersService extends AbstracService {
   ) {
     super(userRepo);
   }
-
-  createRandomUser(): CreateUserDto {
-    return {
-      email: 'Emerson93@yahoo.com',
-      username: faker.name.middleName('female'),
-      password: 'jodelin',
-      role_name: 'ADMIN',
-    };
-  }
   async create(createUserDto: CreateUserDto) {
-   
-      const person = await this.personService.findOnePersonByEmail(createUserDto.email)
-      if (!person) {
-        throw new BadRequestException('email not authorized')
-      }
-  
-    const personIdsaved = await this.userRepo.findOne({ where: { personId: person.id } })
-    
-      const usernamesaved = await this.userRepo.findOne({ where: { username: createUserDto.username } })
-      
+    const person = await this.personService.findOnePersonByEmail(createUserDto.email)
+    if (!person) {
+      throw new BadRequestException('email not authorized')
+    }
+
+    const personIdsaved=  await this.userRepo.findOne({where:{personId:person.id}})
+    const usernamesaved = await this.userRepo.findOne({ where: { username: createUserDto.username } })
     if (personIdsaved || usernamesaved) {
-        throw new BadRequestException('username or user alredy exist')
-      }
-      const salt = await bcrypt.genSalt();
-      const hash = await bcrypt.hash(createUserDto.password, salt);
-      const rolesaved= await this.roleRepo.findOne({where:{role_name:createUserDto.role_name}})
-      const user = this.userRepo.create(createUserDto)
-      user.password = hash;
-      user.person = person;
-      if (!rolesaved) {
-        const role = new Roles()
-        role.role_name = createUserDto.role_name;
-        this.roleRepo
-        user.role = role;
-        
-        return await this.userRepo.save(user)
-      }
-      user.role = rolesaved;
-   
-  
- 
+      throw new BadRequestException('username or user alredy exist')
+    }
+    const salt = await bcrypt.genSalt();
+    const hash = await bcrypt.hash(createUserDto.password, salt);
+    const rolesaved= await this.roleRepo.findOne({where:{role_name:createUserDto.role_name}})
+    const user = this.userRepo.create(createUserDto)
+    user.password = hash;
+    user.person = person;
+    if (!rolesaved) {
+      const role = new Roles()
+      role.role_name = createUserDto.role_name;
+      this.roleRepo
+      user.role = role;
+      
+      return await this.userRepo.save(user)
+    }
+    user.role = rolesaved;
     return await this.userRepo.save(user)
   }
 

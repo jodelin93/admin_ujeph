@@ -36,11 +36,16 @@ __decorate([
         type: 'number',
         description: 'id etudiant'
     }),
-    (0, swagger_1.ApiOperation)({ description: 'this is the endpoint for Creating additionals data for  a student' }),
+    (0, swagger_1.ApiOperation)({ description: 'this is the endpoint for Creating  a student' }),
     (0, swagger_1.ApiBody)({ type: create_infos_students_dto_1.CreateStudentInfoDto }),
     (0, swagger_1.ApiCreatedResponse)({
         description: 'The record has been successfully created.',
         type: create_infos_students_dto_1.CreateStudentInfoDto,
+    }),
+    (0, swagger_1.ApiParam)({
+        name: 'id',
+        type: 'number',
+        description: 'id etudiant'
     }),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
@@ -61,6 +66,11 @@ __decorate([
     }),
     (0, swagger_1.ApiOperation)({
         description: 'this is the endpoint for updating  a student infos',
+    }),
+    (0, swagger_1.ApiParam)({
+        name: 'id',
+        type: 'number',
+        description: 'id de l\'enregistrement'
     }),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),

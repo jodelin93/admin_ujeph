@@ -15,5 +15,4 @@ export declare class StudentsService extends AbstracService {
     findOneStudent(uuid: string, relations?: any[]): Promise<any>;
     updateOneStudent(uuid: string, updateStudentDto: UpdateStudentDto): Promise<Student>;
     removeOneStudent(uuid: string): Promise<any>;
-    search(data: any): Promise<any[]>;
 }
