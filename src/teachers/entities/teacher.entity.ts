@@ -1,5 +1,6 @@
+import { Catalogue } from 'src/catalogue/entities/catalogue.entity';
 import { Person } from 'src/persons/entities/person.entity';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 export enum Niveau {
   LICENCE = 'licence',
   MAITRISE = 'maitrise',
@@ -15,7 +16,16 @@ export class Teacher {
   @Column()
   personId: number;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
   @OneToOne(() => Person,)
   @JoinColumn()
   person: Person;
+
+  @OneToMany(() => Catalogue, (catalogue) => catalogue.teacher)
+    catalogue: Catalogue;
 }

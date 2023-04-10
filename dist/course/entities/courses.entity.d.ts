@@ -1,3 +1,4 @@
+import { Catalogue } from 'src/catalogue/entities/catalogue.entity';
 export declare class Courses {
     id: number;
     code_cours: string;
@@ -5,4 +6,5 @@ export declare class Courses {
     description: string;
     createdAt: Date;
     updatedAt: Date;
+    catalogue: Catalogue;
 }

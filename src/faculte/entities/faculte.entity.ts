@@ -1,8 +1,10 @@
+import { Catalogue } from 'src/catalogue/entities/catalogue.entity';
 import { Immatriculation } from 'src/immatriculation/entities/immatriculation.entity';
 import {
     Column,
     CreateDateColumn,
     Entity,
+    OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
@@ -47,6 +49,9 @@ import {
 
     @OneToOne(()=>Immatriculation,(immatriculation)=>immatriculation.student)
     immatriculation: Immatriculation;
+
+    @OneToMany(() => Catalogue, (catalogue) => catalogue.faculte)
+    catalogue: Catalogue;
   
     
   }

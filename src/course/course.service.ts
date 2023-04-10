@@ -8,6 +8,7 @@ import { Courses } from './entities/courses.entity';
 
 @Injectable()
 export class CourseService extends AbstracService{
+
   constructor(
     @InjectRepository(Courses) private courseRepo: Repository<Courses>,
   ) {
@@ -21,10 +22,8 @@ export class CourseService extends AbstracService{
     return  await this.courseRepo.save(createCourseDto)
   }
 
-
-
-  async findOne(id: number) {
-    return await super.findOne({id});
+  async findOneCourse(id: number,  relations: any[] = []) {
+    return  await super.findOne({id},relations);
   }
 
   async update(id: number, updateCourseDto: UpdateCourseDto) {

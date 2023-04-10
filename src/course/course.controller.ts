@@ -27,7 +27,7 @@ export class CourseController {
     isArray: true,
   })
   findAll(@Query('page', ParseIntPipe) page?: number) {
-    return this.courseService.findAll(page, []);
+    return this.courseService.findAll(page, ['catalogue']);
   }
 
   @Get(':id')
@@ -42,7 +42,7 @@ export class CourseController {
   })
   findOne(@Param('id', ParseIntPipe
   ) id: number) {
-    return this.courseService.findOne(+id);
+    return this.courseService.findOneCourse(+id, ['catalogue']);
   }
 
   @Patch(':id')

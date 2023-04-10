@@ -10,8 +10,8 @@ import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './commons/common.module';
 import { FaculteModule } from './faculte/faculte.module';
 import { ImmatriculationModule } from './immatriculation/immatriculation.module';
+import { CatalogueModule } from './catalogue/catalogue.module';
 import { CourseModule } from './course/course.module';
-
 
 
 
@@ -25,11 +25,12 @@ import { CourseModule } from './course/course.module';
       username: process.env.DATABASE_USER_PROD,
       password: process.env.DATABASE_PASSWORD_PROD,
       database: process.env.DATABASE_NAME_PROD,
+      logging: false,
+      synchronize:true,
       autoLoadEntities: true,
-      synchronize:true
     }),
-    EmployeesModule,CourseModule,
-    StudentsModule,ImmatriculationModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule,  
+    EmployeesModule,
+    StudentsModule,ImmatriculationModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule,CourseModule, CatalogueModule,  
   ],
   controllers: [],
   providers: [],
