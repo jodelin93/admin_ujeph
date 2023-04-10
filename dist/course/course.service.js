@@ -30,8 +30,8 @@ let CourseService = class CourseService extends abstract_service_1.AbstracServic
         }
         return await this.courseRepo.save(createCourseDto);
     }
-    async findOne(id) {
-        return await super.findOne({ id });
+    async findOneCourse(id, relations = []) {
+        return await super.findOne({ id }, relations);
     }
     async update(id, updateCourseDto) {
         const courseSaved = await this.courseRepo.preload(Object.assign({ id }, updateCourseDto));

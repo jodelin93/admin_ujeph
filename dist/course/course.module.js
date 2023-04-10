@@ -18,7 +18,8 @@ CourseModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([courses_entity_1.Courses])],
         controllers: [course_controller_1.CourseController],
-        providers: [course_service_1.CourseService]
+        providers: [course_service_1.CourseService],
+        exports: [course_service_1.CourseService]
     })
 ], CourseModule);
 exports.CourseModule = CourseModule;

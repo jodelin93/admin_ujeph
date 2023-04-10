@@ -26,10 +26,10 @@ let CourseController = class CourseController {
         return this.courseService.create(createCourseDto);
     }
     findAll(page) {
-        return this.courseService.findAll(page, []);
+        return this.courseService.findAll(page, ['catalogue']);
     }
     findOne(id) {
-        return this.courseService.findOne(+id);
+        return this.courseService.findOneCourse(+id, ['catalogue']);
     }
     update(id, updateCourseDto) {
         return this.courseService.update(+id, updateCourseDto);

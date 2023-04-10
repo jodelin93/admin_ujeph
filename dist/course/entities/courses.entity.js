@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Courses = void 0;
+const catalogue_entity_1 = require("../../catalogue/entities/catalogue.entity");
 const typeorm_1 = require("typeorm");
 let Courses = class Courses {
 };
@@ -37,6 +38,10 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], Courses.prototype, "updatedAt", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => catalogue_entity_1.Catalogue, (catalogue) => catalogue.courses),
+    __metadata("design:type", catalogue_entity_1.Catalogue)
+], Courses.prototype, "catalogue", void 0);
 Courses = __decorate([
     (0, typeorm_1.Entity)()
 ], Courses);

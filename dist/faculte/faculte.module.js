@@ -18,7 +18,8 @@ FaculteModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([faculte_entity_1.Faculte])],
         controllers: [faculte_controller_1.FaculteController],
-        providers: [faculte_service_1.FaculteService]
+        providers: [faculte_service_1.FaculteService],
+        exports: [faculte_service_1.FaculteService]
     })
 ], FaculteModule);
 exports.FaculteModule = FaculteModule;

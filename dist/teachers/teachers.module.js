@@ -20,6 +20,7 @@ TeachersModule = __decorate([
         imports: [typeorm_1.TypeOrmModule.forFeature([teacher_entity_1.Teacher]), persons_module_1.PersonsModule],
         controllers: [teachers_controller_1.TeachersController],
         providers: [teachers_service_1.TeachersService],
+        exports: [teachers_service_1.TeachersService]
     })
 ], TeachersModule);
 exports.TeachersModule = TeachersModule;

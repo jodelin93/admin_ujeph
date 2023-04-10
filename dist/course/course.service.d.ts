@@ -7,7 +7,7 @@ export declare class CourseService extends AbstracService {
     private courseRepo;
     constructor(courseRepo: Repository<Courses>);
     create(createCourseDto: CreateCourseDto): Promise<CreateCourseDto & Courses>;
-    findOne(id: number): Promise<any>;
+    findOneCourse(id: number, relations?: any[]): Promise<any>;
     update(id: number, updateCourseDto: UpdateCourseDto): Promise<Courses>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

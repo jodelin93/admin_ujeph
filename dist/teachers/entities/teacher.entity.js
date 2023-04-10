@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Teacher = exports.Niveau = void 0;
+const catalogue_entity_1 = require("../../catalogue/entities/catalogue.entity");
 const person_entity_1 = require("../../persons/entities/person.entity");
 const typeorm_1 = require("typeorm");
 var Niveau;
@@ -33,10 +34,22 @@ __decorate([
     __metadata("design:type", Number)
 ], Teacher.prototype, "personId", void 0);
 __decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], Teacher.prototype, "createdAt", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", Date)
+], Teacher.prototype, "updatedAt", void 0);
+__decorate([
     (0, typeorm_1.OneToOne)(() => person_entity_1.Person),
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", person_entity_1.Person)
 ], Teacher.prototype, "person", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => catalogue_entity_1.Catalogue, (catalogue) => catalogue.teacher),
+    __metadata("design:type", catalogue_entity_1.Catalogue)
+], Teacher.prototype, "catalogue", void 0);
 Teacher = __decorate([
     (0, typeorm_1.Entity)()
 ], Teacher);
