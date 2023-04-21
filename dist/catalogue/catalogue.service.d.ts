@@ -12,4 +12,5 @@ export declare class CatalogueService extends AbstracService {
     constructor(catalogueRepo: Repository<Catalogue>, faculteService: FaculteService, teacherService: TeachersService, courseService: CourseService);
     create(data: any): Promise<Catalogue>;
     updateTeacher(id: number, teacherId: number): Promise<Catalogue>;
+    findAllFilter(faculteId: number, semestre: string, annee_academique: string): Promise<Catalogue[]>;
 }

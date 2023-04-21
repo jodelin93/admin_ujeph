@@ -24,14 +24,6 @@ export class Immatriculation {
     @Column()
     studentId:number
 
-    @OneToOne(() => Student, (student) => student.immatriculation)
-    @JoinColumn()
-    student: Student;
-
-    @OneToOne(() => Faculte, (faculte) => faculte.immatriculation)
-    @JoinColumn()
-    faculte: Faculte;
-    
     @CreateDateColumn()
     createdAt: Date;
   

@@ -25,9 +25,29 @@ __decorate([
     __metadata("design:type", String)
 ], Catalogue.prototype, "semestre", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Catalogue.prototype, "faculteId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Catalogue.prototype, "coursesId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Catalogue.prototype, "annee_academique", void 0);
+__decorate([
     (0, typeorm_1.Column)({ default: 1, type: "tinyint" }),
     __metadata("design:type", Number)
 ], Catalogue.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 0, type: "tinyint" }),
+    __metadata("design:type", Number)
+], Catalogue.prototype, "matiere_base", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Catalogue.prototype, "note_passage", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

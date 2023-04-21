@@ -11,8 +11,23 @@ export class Catalogue {
     @Column()
     semestre: string;
 
+    @Column()
+    faculteId: number;
+
+    @Column()
+    coursesId: number;
+
+    @Column()
+    annee_academique: string;
+
     @Column({default:1,type:"tinyint"})
     status: number
+
+    @Column({default:0,type:"tinyint"})
+    matiere_base: number
+
+    @Column()
+    note_passage: number
 
     @CreateDateColumn()
     createdAt: Date;
