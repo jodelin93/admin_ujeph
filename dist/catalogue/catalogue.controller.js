@@ -30,6 +30,9 @@ let CatalogueController = class CatalogueController {
     findAll(page) {
         return this.catalogueService.findAll(page, []);
     }
+    findAllFilter(faculteId, semestre, annee_academique) {
+        return this.catalogueService.findAllFilter(faculteId, semestre, annee_academique);
+    }
     findOne(id) {
         return this.catalogueService.findOne(id, ['courses', 'faculte', 'teacher']);
     }
@@ -50,9 +53,9 @@ __decorate([
         description: 'The record has been successfully created.',
         type: create_catalogue_dto_1.CreateCatalogueDto,
     }),
-    __param(0, (0, common_1.Query)('teacherId')),
-    __param(1, (0, common_1.Query)('faculteId')),
-    __param(2, (0, common_1.Query)('coursesId')),
+    __param(0, (0, common_1.Query)('teacherId', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Query)('faculteId', common_1.ParseIntPipe)),
+    __param(2, (0, common_1.Query)('coursesId', common_1.ParseIntPipe)),
     __param(3, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number, Number, create_catalogue_dto_1.CreateCatalogueDto]),
@@ -65,6 +68,15 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], CatalogueController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)("/filter"),
+    __param(0, (0, common_1.Query)('faculteId', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Query)('semestre')),
+    __param(2, (0, common_1.Query)('annee_academique')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, String, String]),
+    __metadata("design:returntype", void 0)
+], CatalogueController.prototype, "findAllFilter", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),

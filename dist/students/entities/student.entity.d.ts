@@ -1,4 +1,3 @@
-import { Immatriculation } from "src/immatriculation/entities/immatriculation.entity";
 import { Person } from "src/persons/entities/person.entity";
 import { StudentInformationsCompementaires } from "./student.infos.entity";
 export declare class Student {
@@ -15,6 +14,5 @@ export declare class Student {
     updatedAt: Date;
     personId: number;
     person: Person;
-    immatriculation: Immatriculation;
     studentinfos: StudentInformationsCompementaires;
 }

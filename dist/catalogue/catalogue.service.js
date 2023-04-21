@@ -35,10 +35,13 @@ let CatalogueService = class CatalogueService extends abstract_service_1.Abstrac
         const courses = await this.courseService.findOne({ id: data.coursesId });
         const catalogue = this.catalogueRepo.create({
             semestre: data.semestre,
+            matiere_base: data.matiere_base,
+            note_passage: data.note_passage,
+            annee_academique: data.annee_academique,
             teacher, courses, faculte
         });
         if (faculte && teacher && courses) {
-            const catalogueSaved = await this.catalogueRepo.findOne({ where: { courses: courses.id, semestre: data.semestre } });
+            const catalogueSaved = await this.catalogueRepo.findOne({ where: { coursesId: courses.id, semestre: data.semestre } });
             if (catalogueSaved) {
                 throw new common_1.BadRequestException("ce cours a deja ete attribuer a cette faculte pour ce meme semestre");
             }
@@ -50,11 +53,16 @@ let CatalogueService = class CatalogueService extends abstract_service_1.Abstrac
     }
     async updateTeacher(id, teacherId) {
         const teacher = await this.teacherService.findOne({ id: teacherId });
-        console.log(teacher);
-        console.log(teacherId);
         const catalogue = await this.catalogueRepo.preload({ id });
         catalogue.teacher = teacher;
         return await this.catalogueRepo.save(catalogue);
+    }
+    async findAllFilter(faculteId, semestre, annee_academique) {
+        const faculte = await this.faculteService.findOne(faculteId);
+        console.log(faculte);
+        return await this.catalogueRepo.find({ where: {
+                faculteId: faculte.faculteId, semestre, annee_academique
+            } });
     }
 };
 CatalogueService = __decorate([

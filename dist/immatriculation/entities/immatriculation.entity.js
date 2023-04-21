@@ -10,8 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Immatriculation = void 0;
-const faculte_entity_1 = require("../../faculte/entities/faculte.entity");
-const student_entity_1 = require("../../students/entities/student.entity");
 const typeorm_1 = require("typeorm");
 let Immatriculation = class Immatriculation {
 };
@@ -43,16 +41,6 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Immatriculation.prototype, "studentId", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => student_entity_1.Student, (student) => student.immatriculation),
-    (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", student_entity_1.Student)
-], Immatriculation.prototype, "student", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => faculte_entity_1.Faculte, (faculte) => faculte.immatriculation),
-    (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", faculte_entity_1.Faculte)
-], Immatriculation.prototype, "faculte", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

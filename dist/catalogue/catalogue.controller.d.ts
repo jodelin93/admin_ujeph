@@ -6,6 +6,7 @@ export declare class CatalogueController {
     constructor(catalogueService: CatalogueService);
     create(teacherId: number, faculteId: number, coursesId: number, createCatalogueDto: CreateCatalogueDto): Promise<import("./entities/catalogue.entity").Catalogue>;
     findAll(page?: number): Promise<import("../commons/paginate-result.interface").PaginateResult>;
+    findAllFilter(faculteId: number, semestre: string, annee_academique: string): Promise<import("./entities/catalogue.entity").Catalogue[]>;
     findOne(id: number): Promise<any>;
     update(id: number, updateCatalogueDto: UpdateCatalogueDto): Promise<any>;
     updateTeacher(id: number, teacherId: number): Promise<import("./entities/catalogue.entity").Catalogue>;

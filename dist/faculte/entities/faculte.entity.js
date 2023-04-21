@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Faculte = exports.DEGREE = void 0;
 const catalogue_entity_1 = require("../../catalogue/entities/catalogue.entity");
-const immatriculation_entity_1 = require("../../immatriculation/entities/immatriculation.entity");
 const typeorm_1 = require("typeorm");
 var DEGREE;
 (function (DEGREE) {
@@ -59,10 +58,6 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], Faculte.prototype, "updatedAt", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => immatriculation_entity_1.Immatriculation, (immatriculation) => immatriculation.student),
-    __metadata("design:type", immatriculation_entity_1.Immatriculation)
-], Faculte.prototype, "immatriculation", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => catalogue_entity_1.Catalogue, (catalogue) => catalogue.faculte),
     __metadata("design:type", catalogue_entity_1.Catalogue)

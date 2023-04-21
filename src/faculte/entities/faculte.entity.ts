@@ -47,8 +47,6 @@ import {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @OneToOne(()=>Immatriculation,(immatriculation)=>immatriculation.student)
-    immatriculation: Immatriculation;
 
     @OneToMany(() => Catalogue, (catalogue) => catalogue.faculte)
     catalogue: Catalogue;

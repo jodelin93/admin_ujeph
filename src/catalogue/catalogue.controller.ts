@@ -18,9 +18,9 @@ export class CatalogueController {
     type: CreateCatalogueDto,
   })
   create(
-    @Query('teacherId') teacherId: number,
-    @Query('faculteId') faculteId: number,
-    @Query('coursesId') coursesId: number,
+    @Query('teacherId',ParseIntPipe) teacherId: number,
+    @Query('faculteId',ParseIntPipe) faculteId: number,
+    @Query('coursesId',ParseIntPipe) coursesId: number,
     @Body() createCatalogueDto: CreateCatalogueDto) {
     
     return this.catalogueService.create(
@@ -35,6 +35,15 @@ export class CatalogueController {
   @Get()
   findAll(@Query('page', ParseIntPipe) page?: number) {
     return this.catalogueService.findAll(page,[]);
+  }
+
+  @Get("/filter")
+  findAllFilter(
+    @Query('faculteId',ParseIntPipe) faculteId: number,
+    @Query('semestre') semestre: string,
+    @Query('annee_academique') annee_academique: string,
+  ) {
+    return this.catalogueService.findAllFilter(faculteId,semestre,annee_academique);
   }
 
   @Get(':id')
