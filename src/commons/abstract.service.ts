@@ -77,4 +77,33 @@ export abstract class AbstracService {
         await this.repository.delete(id);
         return data;
       }
+
+      async findAllPaginate(
+        page= 1,
+        relations: any[] = [],
+        condition?: any,
+      ): Promise<any> {
+        const take = 15;
+        if (page === 0 || !page) {
+          page = 1;
+        }
+        const [data, total] = await this.repository.findAndCount({
+          where: condition,
+          relations,
+          take,
+          skip: (page - 1) * take,
+        });
+    
+        return {
+          data,
+          meta: {
+            total,
+            CurrentPage: page,
+            nextPage: page + 1,
+            previousPage: Math.ceil(page - 1),
+            firstPaginate: 1,
+            lastPaginate: Math.ceil(total / take),
+          },
+        };
+      }
 }
