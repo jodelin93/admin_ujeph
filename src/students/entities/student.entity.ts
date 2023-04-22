@@ -45,8 +45,7 @@ export class Student {
     @JoinColumn()
     person: Person;
 
-    @OneToOne(()=>Immatriculation,(immatriculation)=>immatriculation.student)
-    immatriculation: Immatriculation;
+  
 
     @OneToOne(() => StudentInformationsCompementaires,studentinfo=>studentinfo.student)
     studentinfos: StudentInformationsCompementaires;

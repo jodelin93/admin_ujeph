@@ -44,7 +44,7 @@ let StudentsController = class StudentsController {
         return this.studentsService.removeOneStudent(uuid);
     }
     search(data) {
-        return this.studentsService.search(data);
+        return this.studentsService.search(1, data);
     }
 };
 __decorate([

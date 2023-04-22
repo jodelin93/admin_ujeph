@@ -9,4 +9,5 @@ export declare abstract class AbstracService {
     findOne(condition: any, relations?: any[]): Promise<any>;
     update(id: number, data: any): Promise<any>;
     remove(id: number): Promise<any>;
+    findAllPaginate(page?: number, relations?: any[], condition?: any): Promise<any>;
 }

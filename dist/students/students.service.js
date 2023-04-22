@@ -87,8 +87,27 @@ let StudentsService = class StudentsService extends abstract_service_1.AbstracSe
             return student;
         }
     }
-    async search(data) {
-        return await this.studentRepo.query("select * from person inner join student on person.id=student.personId where code like '%" + data + "%' or nom like '%" + data + "%' or prenom like '%" + data + "%' ");
+    async search(page = 1, datas) {
+        const take = 15;
+        const data = await this.studentRepo.query("select * from person inner join student on person.id=student.personId where code like '%" + datas + "%' or nom like '%" + datas + "%' or prenom like '%" + datas + "%' limit " + take + " offset " + (page - 1) + " ");
+        const totale = await this.studentRepo.query("select count(*) as sum from person inner join student on person.id=student.personId where code like '%" + datas + "%' or nom like '%" + datas + "%' or prenom like '%" + datas + "%'");
+        ;
+        const total = parseInt(totale[0].sum);
+        return {
+            data,
+            meta: {
+                total,
+                CurrentPage: page,
+                nextPage: page + 1,
+                previousPage: Math.ceil(page - 1),
+                firstPaginate: 1,
+                lastPaginate: Math.ceil(total / take),
+            },
+        };
+    }
+    async searchPaginate(page, query) {
+        const data = `%${query}%`;
+        return this.findAllPaginate(page, ['person'], [{ code: (0, typeorm_2.Like)(data) }, { nom: (0, typeorm_2.Like)(data) }, { prenom: (0, typeorm_2.Like)(data) }]);
     }
 };
 StudentsService = __decorate([

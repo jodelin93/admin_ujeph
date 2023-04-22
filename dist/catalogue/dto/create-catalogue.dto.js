@@ -19,5 +19,20 @@ __decorate([
     (0, swagger_1.ApiProperty)({ description: 'semestre pour lequel on veut attribuer' }),
     __metadata("design:type", String)
 ], CreateCatalogueDto.prototype, "semestre", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ description: "preciser si c'est une matiere de base" }),
+    __metadata("design:type", Number)
+], CreateCatalogueDto.prototype, "matiere_base", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ description: 'Note de passage de ce cours pour cette faculte' }),
+    __metadata("design:type", Number)
+], CreateCatalogueDto.prototype, "note_passage", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({ description: 'annee academique' }),
+    __metadata("design:type", String)
+], CreateCatalogueDto.prototype, "annee_academique", void 0);
 exports.CreateCatalogueDto = CreateCatalogueDto;
 //# sourceMappingURL=create-catalogue.dto.js.map

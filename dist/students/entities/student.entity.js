@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Student = void 0;
-const immatriculation_entity_1 = require("../../immatriculation/entities/immatriculation.entity");
 const person_entity_1 = require("../../persons/entities/person.entity");
 const typeorm_1 = require("typeorm");
 const student_infos_entity_1 = require("./student.infos.entity");
@@ -69,10 +68,6 @@ __decorate([
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", person_entity_1.Person)
 ], Student.prototype, "person", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => immatriculation_entity_1.Immatriculation, (immatriculation) => immatriculation.student),
-    __metadata("design:type", immatriculation_entity_1.Immatriculation)
-], Student.prototype, "immatriculation", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => student_infos_entity_1.StudentInformationsCompementaires, studentinfo => studentinfo.student),
     __metadata("design:type", student_infos_entity_1.StudentInformationsCompementaires)

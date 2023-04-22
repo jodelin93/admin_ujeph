@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AbstracService } from 'src/commons/abstract.service';
 import { PersonsService } from 'src/persons/persons.service';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { Student } from './entities/student.entity';
@@ -84,9 +84,30 @@ export class StudentsService extends AbstracService {
     }
     }
 
-    async search(data: any): Promise<any[]>{
-      return await this.studentRepo.query("select * from person inner join student on person.id=student.personId where code like '%" + data + "%' or nom like '%" + data + "%' or prenom like '%" + data + "%' ");
+    async search(page=1,datas: any){
+      const take = 15;
+      const data= await this.studentRepo.query("select * from person inner join student on person.id=student.personId where code like '%" + datas + "%' or nom like '%" + datas + "%' or prenom like '%" + datas + "%' limit "+take+" offset "+(page-1)+" ");
+      const totale=await this.studentRepo.query("select count(*) as sum from person inner join student on person.id=student.personId where code like '%" + datas + "%' or nom like '%" + datas + "%' or prenom like '%" + datas + "%'");;
+      const total = parseInt(totale[0].sum);
       
+      return {
+        data,
+        meta: {
+          total,
+          CurrentPage: page,
+          nextPage: page + 1,
+          previousPage: Math.ceil(page - 1),
+          firstPaginate: 1,
+          lastPaginate: Math.ceil(total / take),
+        },
+      };
   }
+
+  async searchPaginate(page:number,query: string): Promise<any[]>{
+    const data= `%${query}%`;
+    
+  return this.findAllPaginate(page,['person'],[{code:Like(data)},{nom:Like(data)},{prenom:Like(data)}]);
+    
+}
    
 }

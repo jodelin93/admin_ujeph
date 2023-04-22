@@ -121,6 +121,6 @@ export class StudentsController {
     description: 'this is the endpoint for searching data',
   })
   search(@Param('data') data: string) {
-    return this.studentsService.search(data);
+    return this.studentsService.search(1,data);
   }
 }
