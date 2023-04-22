@@ -6,6 +6,7 @@ export declare class CourseController {
     constructor(courseService: CourseService);
     create(createCourseDto: CreateCourseDto): Promise<CreateCourseDto & import("./entities/courses.entity").Courses>;
     findAll(page?: number): Promise<import("../commons/paginate-result.interface").PaginateResult>;
+    findFilterAll(): Promise<any[]>;
     findOne(id: number): Promise<any>;
     update(id: number, updateCourseDto: UpdateCourseDto): Promise<import("./entities/courses.entity").Courses>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;

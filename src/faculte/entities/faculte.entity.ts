@@ -50,6 +50,9 @@ import {
 
     @OneToMany(() => Catalogue, (catalogue) => catalogue.faculte)
     catalogue: Catalogue;
+
+    @OneToMany(() => Immatriculation, (immatriculation) => immatriculation.faculte)
+    immatriculation: Immatriculation;
   
     
   }

@@ -28,6 +28,9 @@ let CourseController = class CourseController {
     findAll(page) {
         return this.courseService.findAll(page, ['catalogue']);
     }
+    findFilterAll() {
+        return this.courseService.find();
+    }
     findOne(id) {
         return this.courseService.findOneCourse(+id, ['catalogue']);
     }
@@ -62,6 +65,20 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], CourseController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('filter/all'),
+    (0, swagger_1.ApiOperation)({
+        description: 'this is the endpoint for retrieving all  students without filter',
+    }),
+    (0, swagger_1.ApiResponse)({
+        type: create_course_dto_1.CreateCourseDto,
+        description: 'Operation pour recupperer tous les cours sans filtrer',
+        isArray: true,
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], CourseController.prototype, "findFilterAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     (0, swagger_1.ApiParam)({

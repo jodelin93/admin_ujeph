@@ -1,6 +1,6 @@
 import { Immatriculation } from "src/immatriculation/entities/immatriculation.entity";
 import { Person } from "src/persons/entities/person.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { StudentInformationsCompementaires } from "./student.infos.entity";
 
 @Entity()
@@ -45,6 +45,8 @@ export class Student {
     @JoinColumn()
     person: Person;
 
+    @OneToMany(() => Immatriculation, (immatriculation) => immatriculation.student)
+    immatriculation: Immatriculation;
   
 
     @OneToOne(() => StudentInformationsCompementaires,studentinfo=>studentinfo.student)

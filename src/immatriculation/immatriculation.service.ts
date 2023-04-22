@@ -1,9 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AbstracService } from 'src/commons/abstract.service';
 import { Repository } from 'typeorm/repository/Repository';
 import { CreateImmatriculationDto } from './dto/create-immatriculation.dto';
-import { UpdateImmatriculationDto } from './dto/update-immatriculation.dto';
 import { Immatriculation } from './entities/immatriculation.entity';
 
 @Injectable()
@@ -13,8 +12,16 @@ export class ImmatriculationService extends AbstracService{
     super(immatriculationRepo)
   }
 
-   createImmatriculation(faculteId:number,studentId:number,createImmatriculationDto: CreateImmatriculationDto) {
-      const immatriculationData={faculteId,studentId,...createImmatriculationDto}
+   async createImmatriculation(faculteId:number,studentId:number,createImmatriculationDto: CreateImmatriculationDto) {
+     const immatriculationSaved = await this.immatriculationRepo.findOne({where:{
+      faculteId,studentId, annee:createImmatriculationDto.annee
+     }})
+
+     if(immatriculationSaved){
+      throw new BadRequestException("Etudiant deja immatricule pour cette Faculte")
+     }
+      
+    const immatriculationData={faculteId,studentId,...createImmatriculationDto}
     
     return  this.immatriculationRepo.save(immatriculationData);
   }

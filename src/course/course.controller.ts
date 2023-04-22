@@ -30,6 +30,19 @@ export class CourseController {
     return this.courseService.findAll(page, ['catalogue']);
   }
 
+  @Get('filter/all')
+  @ApiOperation({
+    description: 'this is the endpoint for retrieving all  students without filter',
+  })
+  @ApiResponse({
+    type: CreateCourseDto,
+    description: 'Operation pour recupperer tous les cours sans filtrer',
+    isArray: true,
+  })
+  findFilterAll() {
+    return this.courseService.find();
+  }
+
   @Get(':id')
   @ApiParam({
     name: 'id',

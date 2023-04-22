@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { ImmatriculationService } from './immatriculation.service';
 import { CreateImmatriculationDto } from './dto/create-immatriculation.dto';
 import { UpdateImmatriculationDto } from './dto/update-immatriculation.dto';
@@ -26,11 +26,10 @@ export class ImmatriculationController {
     description: 'The record has been successfully created.',
     type: CreateImmatriculationDto,
   })
-  create(@Param('studentId') studentId: number,
-    @Param('faculteId') faculteId: number,
+  create(@Param('studentId',ParseIntPipe) studentId: number,
+    @Param('faculteId',ParseIntPipe) faculteId: number,
     @Body() createImmatriculationDto: CreateImmatriculationDto) {
-    console.log(studentId);
-    console.log(faculteId);
+  
     return this.immatriculationService.createImmatriculation(faculteId,studentId,createImmatriculationDto );
   }
 

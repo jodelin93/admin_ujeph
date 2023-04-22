@@ -23,7 +23,13 @@ let ImmatriculationService = class ImmatriculationService extends abstract_servi
         super(immatriculationRepo);
         this.immatriculationRepo = immatriculationRepo;
     }
-    createImmatriculation(faculteId, studentId, createImmatriculationDto) {
+    async createImmatriculation(faculteId, studentId, createImmatriculationDto) {
+        const immatriculationSaved = await this.immatriculationRepo.findOne({ where: {
+                faculteId, studentId, annee: createImmatriculationDto.annee
+            } });
+        if (immatriculationSaved) {
+            throw new common_1.BadRequestException("Etudiant deja immatricule pour cette Faculte");
+        }
         const immatriculationData = Object.assign({ faculteId, studentId }, createImmatriculationDto);
         return this.immatriculationRepo.save(immatriculationData);
     }

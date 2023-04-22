@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Immatriculation = void 0;
+const faculte_entity_1 = require("../../faculte/entities/faculte.entity");
+const student_entity_1 = require("../../students/entities/student.entity");
 const typeorm_1 = require("typeorm");
 let Immatriculation = class Immatriculation {
 };
@@ -49,6 +51,14 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], Immatriculation.prototype, "updatedAt", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => faculte_entity_1.Faculte, (faculte) => faculte.immatriculation, { eager: true }),
+    __metadata("design:type", Array)
+], Immatriculation.prototype, "faculte", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => student_entity_1.Student, (student) => student.immatriculation, { eager: true }),
+    __metadata("design:type", Array)
+], Immatriculation.prototype, "student", void 0);
 Immatriculation = __decorate([
     (0, typeorm_1.Entity)()
 ], Immatriculation);

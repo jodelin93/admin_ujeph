@@ -1,6 +1,6 @@
 import { Faculte } from 'src/faculte/entities/faculte.entity';
 import { Student } from 'src/students/entities/student.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 @Entity()
 export class Immatriculation {
     @PrimaryGeneratedColumn()
@@ -29,4 +29,10 @@ export class Immatriculation {
   
     @UpdateDateColumn()
     updatedAt: Date;
+
+    @ManyToOne(() => Faculte, (faculte) => faculte.immatriculation, { eager: true })
+    faculte: Faculte[];
+
+    @ManyToOne(() => Student, (student) => student.immatriculation, { eager: true })
+    student: Student[];
  }
