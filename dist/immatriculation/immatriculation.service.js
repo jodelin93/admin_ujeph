@@ -33,6 +33,13 @@ let ImmatriculationService = class ImmatriculationService extends abstract_servi
         const immatriculationData = Object.assign({ faculteId, studentId }, createImmatriculationDto);
         return this.immatriculationRepo.save(immatriculationData);
     }
+    async findOneEtudiant(id) {
+        const immatriculationSaved = await this.immatriculationRepo.find({ where: { studentId: id } });
+        if (!immatriculationSaved) {
+            throw new common_1.BadRequestException('no student with this ID');
+        }
+        return immatriculationSaved;
+    }
 };
 ImmatriculationService = __decorate([
     (0, common_1.Injectable)(),

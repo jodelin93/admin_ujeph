@@ -33,14 +33,20 @@ export class ImmatriculationController {
     return this.immatriculationService.createImmatriculation(faculteId,studentId,createImmatriculationDto );
   }
 
-  @Get()
-  findAll() {
-    //return this.immatriculationService.findAll();
-  }
+  // @Get(':id')
+  // findAll() {
+  //   return this.immatriculationService.findAll();
+  // }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.immatriculationService.findOne(+id);
+  @Get(':idEtudiant')
+  @ApiParam({
+    name: 'idEtudiant',
+      type: 'number',
+    description:'id etudiant'
+  })
+  @ApiOperation({ description: 'this is the endpoint for Getting   a immatriculation' })
+  findOne(@Param('idEtudiant',ParseIntPipe) id: number) {
+    return this.immatriculationService.findOneEtudiant(id);
   }
 
   @Patch(':id')

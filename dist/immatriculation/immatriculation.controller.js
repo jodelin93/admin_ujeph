@@ -25,10 +25,8 @@ let ImmatriculationController = class ImmatriculationController {
     create(studentId, faculteId, createImmatriculationDto) {
         return this.immatriculationService.createImmatriculation(faculteId, studentId, createImmatriculationDto);
     }
-    findAll() {
-    }
     findOne(id) {
-        return this.immatriculationService.findOne(+id);
+        return this.immatriculationService.findOneEtudiant(id);
     }
     update(id, updateImmatriculationDto) {
         return this.immatriculationService.update(+id, updateImmatriculationDto);
@@ -62,16 +60,16 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ImmatriculationController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)(':idEtudiant'),
+    (0, swagger_1.ApiParam)({
+        name: 'idEtudiant',
+        type: 'number',
+        description: 'id etudiant'
+    }),
+    (0, swagger_1.ApiOperation)({ description: 'this is the endpoint for Getting   a immatriculation' }),
+    __param(0, (0, common_1.Param)('idEtudiant', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], ImmatriculationController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], ImmatriculationController.prototype, "findOne", null);
 __decorate([

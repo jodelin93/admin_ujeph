@@ -12,8 +12,7 @@ export declare class ImmatriculationController {
         faculteId: number;
         studentId: number;
     } & import("./entities/immatriculation.entity").Immatriculation>;
-    findAll(): void;
-    findOne(id: string): Promise<any>;
+    findOne(id: number): Promise<import("./entities/immatriculation.entity").Immatriculation[]>;
     update(id: string, updateImmatriculationDto: UpdateImmatriculationDto): Promise<any>;
     remove(id: string): Promise<any>;
 }

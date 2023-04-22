@@ -7,6 +7,7 @@ import { Immatriculation } from './entities/immatriculation.entity';
 
 @Injectable()
 export class ImmatriculationService extends AbstracService{
+ 
 
   constructor(@InjectRepository(Immatriculation) private immatriculationRepo :Repository<Immatriculation>) {
     super(immatriculationRepo)
@@ -24,6 +25,16 @@ export class ImmatriculationService extends AbstracService{
     const immatriculationData={faculteId,studentId,...createImmatriculationDto}
     
     return  this.immatriculationRepo.save(immatriculationData);
+  }
+
+ async findOneEtudiant(id: number) {
+
+  const immatriculationSaved= await this.immatriculationRepo.find({where:{studentId:id}})
+
+  if(!immatriculationSaved){
+throw new BadRequestException('no student with this ID')
+  }
+   return immatriculationSaved
   }
 
   // findAll() {
