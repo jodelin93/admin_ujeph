@@ -7,7 +7,6 @@ import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { Student } from './entities/student.entity';
 import { faker } from '@faker-js/faker';
-import { count, log } from 'console';
 
 @Injectable()
 export class StudentsService extends AbstracService {
