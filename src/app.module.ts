@@ -27,7 +27,6 @@ import { CourseModule } from './course/course.module';
       password: process.env.DATABASE_PASSWORD_PROD,
       database: process.env.DATABASE_NAME_PROD,
       logging: false,
-      synchronize:true,
       autoLoadEntities: true,
     }),
     EmployeesModule,
