@@ -74,7 +74,7 @@ export class ImmatriculationController {
   findOne(@Param('idEtudiant', ParseIntPipe) id: number) {
     return this.immatriculationService.findOneEtudiant(id);
   }
-  @Get(':idFaculte')
+  @Get('faculte/:idFaculte')
   @ApiParam({
     name: 'idFaculte',
     type: 'number',

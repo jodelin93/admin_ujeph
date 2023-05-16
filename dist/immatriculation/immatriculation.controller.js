@@ -80,7 +80,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ImmatriculationController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Get)(':idFaculte'),
+    (0, common_1.Get)('faculte/:idFaculte'),
     (0, swagger_1.ApiParam)({
         name: 'idFaculte',
         type: 'number',
