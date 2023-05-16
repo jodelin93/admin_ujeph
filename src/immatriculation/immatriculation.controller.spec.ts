@@ -11,7 +11,9 @@ describe('ImmatriculationController', () => {
       providers: [ImmatriculationService],
     }).compile();
 
-    controller = module.get<ImmatriculationController>(ImmatriculationController);
+    controller = module.get<ImmatriculationController>(
+      ImmatriculationController,
+    );
   });
 
   it('should be defined', () => {

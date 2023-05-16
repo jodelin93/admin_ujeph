@@ -14,4 +14,5 @@ export declare class ImmatriculationService extends AbstracService {
         studentId: number;
     } & Immatriculation>;
     findOneEtudiant(id: number): Promise<Immatriculation[]>;
+    findOneFaculte(id: number): Promise<Immatriculation[]>;
 }

@@ -13,9 +13,6 @@ import { ImmatriculationModule } from './immatriculation/immatriculation.module'
 import { CatalogueModule } from './catalogue/catalogue.module';
 import { CourseModule } from './course/course.module';
 
-
-
-
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -27,10 +24,19 @@ import { CourseModule } from './course/course.module';
       password: process.env.DATABASE_PASSWORD_PROD,
       database: process.env.DATABASE_NAME_PROD,
       logging: false,
+      synchronize: false,
       autoLoadEntities: true,
     }),
     EmployeesModule,
-    StudentsModule,ImmatriculationModule,TeachersModule,UsersModule, AuthModule,CommonModule, FaculteModule,CourseModule, CatalogueModule,  
+    StudentsModule,
+    ImmatriculationModule,
+    TeachersModule,
+    UsersModule,
+    AuthModule,
+    CommonModule,
+    FaculteModule,
+    CourseModule,
+    CatalogueModule,
   ],
   controllers: [],
   providers: [],

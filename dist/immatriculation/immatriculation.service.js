@@ -24,19 +24,35 @@ let ImmatriculationService = class ImmatriculationService extends abstract_servi
         this.immatriculationRepo = immatriculationRepo;
     }
     async createImmatriculation(faculteId, studentId, createImmatriculationDto) {
-        const immatriculationSaved = await this.immatriculationRepo.findOne({ where: {
-                faculteId, studentId, annee: createImmatriculationDto.annee
-            } });
+        const immatriculationSaved = await this.immatriculationRepo.findOne({
+            where: {
+                faculteId,
+                studentId,
+                annee: createImmatriculationDto.annee,
+            },
+        });
         if (immatriculationSaved) {
-            throw new common_1.BadRequestException("Etudiant deja immatricule pour cette Faculte");
+            throw new common_1.BadRequestException('Etudiant deja immatricule pour cette Faculte');
         }
-        const immatriculationData = Object.assign({ faculteId, studentId }, createImmatriculationDto);
+        const immatriculationData = Object.assign({ faculteId,
+            studentId }, createImmatriculationDto);
         return this.immatriculationRepo.save(immatriculationData);
     }
     async findOneEtudiant(id) {
-        const immatriculationSaved = await this.immatriculationRepo.find({ where: { studentId: id } });
+        const immatriculationSaved = await this.immatriculationRepo.find({
+            where: { studentId: id },
+        });
         if (!immatriculationSaved) {
             throw new common_1.BadRequestException('no student with this ID');
+        }
+        return immatriculationSaved;
+    }
+    async findOneFaculte(id) {
+        const immatriculationSaved = await this.immatriculationRepo.find({
+            where: { faculteId: id },
+        });
+        if (!immatriculationSaved) {
+            throw new common_1.BadRequestException('no faculte with this ID');
         }
         return immatriculationSaved;
     }

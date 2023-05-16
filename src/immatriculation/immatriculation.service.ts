@@ -6,35 +6,61 @@ import { CreateImmatriculationDto } from './dto/create-immatriculation.dto';
 import { Immatriculation } from './entities/immatriculation.entity';
 
 @Injectable()
-export class ImmatriculationService extends AbstracService{
- 
-
-  constructor(@InjectRepository(Immatriculation) private immatriculationRepo :Repository<Immatriculation>) {
-    super(immatriculationRepo)
+export class ImmatriculationService extends AbstracService {
+  constructor(
+    @InjectRepository(Immatriculation)
+    private immatriculationRepo: Repository<Immatriculation>,
+  ) {
+    super(immatriculationRepo);
   }
 
-   async createImmatriculation(faculteId:number,studentId:number,createImmatriculationDto: CreateImmatriculationDto) {
-     const immatriculationSaved = await this.immatriculationRepo.findOne({where:{
-      faculteId,studentId, annee:createImmatriculationDto.annee
-     }})
+  async createImmatriculation(
+    faculteId: number,
+    studentId: number,
+    createImmatriculationDto: CreateImmatriculationDto,
+  ) {
+    const immatriculationSaved = await this.immatriculationRepo.findOne({
+      where: {
+        faculteId,
+        studentId,
+        annee: createImmatriculationDto.annee,
+      },
+    });
 
-     if(immatriculationSaved){
-      throw new BadRequestException("Etudiant deja immatricule pour cette Faculte")
-     }
-      
-    const immatriculationData={faculteId,studentId,...createImmatriculationDto}
-    
-    return  this.immatriculationRepo.save(immatriculationData);
+    if (immatriculationSaved) {
+      throw new BadRequestException(
+        'Etudiant deja immatricule pour cette Faculte',
+      );
+    }
+
+    const immatriculationData = {
+      faculteId,
+      studentId,
+      ...createImmatriculationDto,
+    };
+
+    return this.immatriculationRepo.save(immatriculationData);
   }
 
- async findOneEtudiant(id: number) {
+  async findOneEtudiant(id: number) {
+    const immatriculationSaved = await this.immatriculationRepo.find({
+      where: { studentId: id },
+    });
 
-  const immatriculationSaved= await this.immatriculationRepo.find({where:{studentId:id}})
-
-  if(!immatriculationSaved){
-throw new BadRequestException('no student with this ID')
+    if (!immatriculationSaved) {
+      throw new BadRequestException('no student with this ID');
+    }
+    return immatriculationSaved;
   }
-   return immatriculationSaved
+  async findOneFaculte(id: number) {
+    const immatriculationSaved = await this.immatriculationRepo.find({
+      where: { faculteId: id },
+    });
+
+    if (!immatriculationSaved) {
+      throw new BadRequestException('no faculte with this ID');
+    }
+    return immatriculationSaved;
   }
 
   // findAll() {

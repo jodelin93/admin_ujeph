@@ -13,6 +13,7 @@ export declare class ImmatriculationController {
         studentId: number;
     } & import("./entities/immatriculation.entity").Immatriculation>;
     findOne(id: number): Promise<import("./entities/immatriculation.entity").Immatriculation[]>;
+    findOneFaculte(id: number): Promise<import("./entities/immatriculation.entity").Immatriculation[]>;
     update(id: string, updateImmatriculationDto: UpdateImmatriculationDto): Promise<any>;
     remove(id: string): Promise<any>;
 }

@@ -28,6 +28,9 @@ let ImmatriculationController = class ImmatriculationController {
     findOne(id) {
         return this.immatriculationService.findOneEtudiant(id);
     }
+    findOneFaculte(id) {
+        return this.immatriculationService.findOneFaculte(id);
+    }
     update(id, updateImmatriculationDto) {
         return this.immatriculationService.update(+id, updateImmatriculationDto);
     }
@@ -40,14 +43,16 @@ __decorate([
     (0, swagger_1.ApiParam)({
         name: 'studentId',
         type: 'number',
-        description: 'id etudiant'
+        description: 'id etudiant',
     }),
     (0, swagger_1.ApiParam)({
         name: 'faculteId',
         type: 'number',
-        description: 'id faculte'
+        description: 'id faculte',
     }),
-    (0, swagger_1.ApiOperation)({ description: 'this is the endpoint for Creating  a immatriculation' }),
+    (0, swagger_1.ApiOperation)({
+        description: 'this is the endpoint for Creating  a immatriculation',
+    }),
     (0, swagger_1.ApiCreatedResponse)({
         description: 'The record has been successfully created.',
         type: create_immatriculation_dto_1.CreateImmatriculationDto,
@@ -64,14 +69,31 @@ __decorate([
     (0, swagger_1.ApiParam)({
         name: 'idEtudiant',
         type: 'number',
-        description: 'id etudiant'
+        description: 'id etudiant',
     }),
-    (0, swagger_1.ApiOperation)({ description: 'this is the endpoint for Getting   a immatriculation' }),
+    (0, swagger_1.ApiOperation)({
+        description: 'this is the endpoint for Getting   a immatriculation',
+    }),
     __param(0, (0, common_1.Param)('idEtudiant', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], ImmatriculationController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)(':idFaculte'),
+    (0, swagger_1.ApiParam)({
+        name: 'idFaculte',
+        type: 'number',
+        description: 'id faculte',
+    }),
+    (0, swagger_1.ApiOperation)({
+        description: 'this is the endpoint for Getting   a immatriculation',
+    }),
+    __param(0, (0, common_1.Param)('idFaculte', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], ImmatriculationController.prototype, "findOneFaculte", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
