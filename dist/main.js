@@ -11,9 +11,14 @@ async function bootstrap() {
     app.use(CookParser());
     app.enableCors({
         origin: [
-            'https://app.ujeph.edu.ht/', 'https://app.ujeph.edu.ht', 'http://localhost:3000', 'http://localhost:3000/', 'https://ujeph.ujeph.edu.ht/', 'https://ujeph.ujeph.edu.ht'
+            'https://app.ujeph.edu.ht/',
+            'https://app.ujeph.edu.ht',
+            'http://localhost:3000',
+            'http://localhost:3000/',
+            'https://ujeph.ujeph.edu.ht/',
+            'https://ujeph.ujeph.edu.ht',
         ],
-        methods: ["GET", "POST", "PATCH", 'DELETE'],
+        methods: ['GET', 'POST', 'PATCH', 'DELETE'],
         credentials: true,
     });
     app.setGlobalPrefix('/v1/api');

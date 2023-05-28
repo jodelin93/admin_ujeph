@@ -48,13 +48,11 @@ let ImmatriculationService = class ImmatriculationService extends abstract_servi
         return immatriculationSaved;
     }
     async findOneFaculte(id) {
-        const immatriculationSaved = await this.immatriculationRepo.find({
-            where: { faculteId: id },
-        });
-        if (!immatriculationSaved) {
+        const immatriculation = await this.immatriculationRepo.query(`select * from immatriculation inner join student on immatriculation.studentId=student.id join person on student.personId=person.id where faculteId=${id}`);
+        if (!immatriculation) {
             throw new common_1.BadRequestException('no faculte with this ID');
         }
-        return immatriculationSaved;
+        return immatriculation;
     }
 };
 ImmatriculationService = __decorate([

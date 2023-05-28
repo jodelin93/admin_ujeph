@@ -53,14 +53,17 @@ export class ImmatriculationService extends AbstracService {
     return immatriculationSaved;
   }
   async findOneFaculte(id: number) {
-    const immatriculationSaved = await this.immatriculationRepo.find({
-      where: { faculteId: id },
-    });
+    const immatriculation = await this.immatriculationRepo.query(
+      `select * from immatriculation inner join student on immatriculation.studentId=student.id join person on student.personId=person.id where faculteId=${id}`,
+    );
+    // const immatriculationSaved = await this.immatriculationRepo.find({
+    //   where: { faculteId: id },
+    // });
 
-    if (!immatriculationSaved) {
+    if (!immatriculation) {
       throw new BadRequestException('no faculte with this ID');
     }
-    return immatriculationSaved;
+    return immatriculation;
   }
 
   // findAll() {
