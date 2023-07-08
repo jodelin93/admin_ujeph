@@ -13,6 +13,7 @@ exports.Faculte = exports.DEGREE = void 0;
 const catalogue_entity_1 = require("../../catalogue/entities/catalogue.entity");
 const immatriculation_entity_1 = require("../../immatriculation/entities/immatriculation.entity");
 const typeorm_1 = require("typeorm");
+const note_entity_1 = require("../../notes/entities/note.entity");
 var DEGREE;
 (function (DEGREE) {
     DEGREE["LICENCE"] = "licence";
@@ -67,6 +68,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => immatriculation_entity_1.Immatriculation, (immatriculation) => immatriculation.faculte),
     __metadata("design:type", immatriculation_entity_1.Immatriculation)
 ], Faculte.prototype, "immatriculation", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => note_entity_1.Note, (note) => note.faculte),
+    __metadata("design:type", note_entity_1.Note)
+], Faculte.prototype, "notes", void 0);
 Faculte = __decorate([
     (0, typeorm_1.Entity)()
 ], Faculte);

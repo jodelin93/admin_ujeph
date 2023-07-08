@@ -1,4 +1,16 @@
-import { Controller,Post, Res,Req, Get,Request, UseInterceptors, ClassSerializerInterceptor, UseGuards, Body} from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Res,
+  Req,
+  Get,
+  Request,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+  UseGuards,
+  Body,
+  Put
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { SetMetadata } from '@nestjs/common';

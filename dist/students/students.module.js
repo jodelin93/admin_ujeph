@@ -26,6 +26,7 @@ StudentsModule = __decorate([
         ],
         controllers: [students_controller_1.StudentsController, student_infos_controllers_1.StudentInfoController],
         providers: [students_service_1.StudentsService, student_infos_service_1.StudentInfoService],
+        exports: [students_service_1.StudentsService]
     })
 ], StudentsModule);
 exports.StudentsModule = StudentsModule;

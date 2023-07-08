@@ -9,6 +9,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
   } from 'typeorm';
+import {Note} from "../../notes/entities/note.entity";
   
   export enum DEGREE {
       LICENCE = 'licence',
@@ -53,6 +54,9 @@ import {
 
     @OneToMany(() => Immatriculation, (immatriculation) => immatriculation.faculte)
     immatriculation: Immatriculation;
+
+      @OneToMany(() => Note, (note) => note.faculte)
+      notes: Note;
   
     
   }

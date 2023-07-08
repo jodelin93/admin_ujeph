@@ -1,5 +1,6 @@
 import { Catalogue } from 'src/catalogue/entities/catalogue.entity';
 import { Immatriculation } from 'src/immatriculation/entities/immatriculation.entity';
+import { Note } from "../../notes/entities/note.entity";
 export declare enum DEGREE {
     LICENCE = "licence",
     MAITRISE = "maitrise",
@@ -19,4 +20,5 @@ export declare class Faculte {
     updatedAt: Date;
     catalogue: Catalogue;
     immatriculation: Immatriculation;
+    notes: Note;
 }

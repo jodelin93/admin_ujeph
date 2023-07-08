@@ -14,6 +14,7 @@ const immatriculation_entity_1 = require("../../immatriculation/entities/immatri
 const person_entity_1 = require("../../persons/entities/person.entity");
 const typeorm_1 = require("typeorm");
 const student_infos_entity_1 = require("./student.infos.entity");
+const note_entity_1 = require("../../notes/entities/note.entity");
 let Student = class Student {
 };
 __decorate([
@@ -77,6 +78,10 @@ __decorate([
     (0, typeorm_1.OneToOne)(() => student_infos_entity_1.StudentInformationsCompementaires, studentinfo => studentinfo.student),
     __metadata("design:type", student_infos_entity_1.StudentInformationsCompementaires)
 ], Student.prototype, "studentinfos", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => note_entity_1.Note, (note) => note.etudiant),
+    __metadata("design:type", note_entity_1.Note)
+], Student.prototype, "notes", void 0);
 Student = __decorate([
     (0, typeorm_1.Entity)()
 ], Student);

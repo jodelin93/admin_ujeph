@@ -2,6 +2,7 @@ import { Immatriculation } from "src/immatriculation/entities/immatriculation.en
 import { Person } from "src/persons/entities/person.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { StudentInformationsCompementaires } from "./student.infos.entity";
+import {Note} from "../../notes/entities/note.entity";
 
 @Entity()
 export class Student {
@@ -51,6 +52,9 @@ export class Student {
 
     @OneToOne(() => StudentInformationsCompementaires,studentinfo=>studentinfo.student)
     studentinfos: StudentInformationsCompementaires;
+
+    @OneToMany(() => Note, (note) => note.etudiant)
+    notes: Note;
 
  
 }

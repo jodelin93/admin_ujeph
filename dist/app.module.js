@@ -20,6 +20,7 @@ const faculte_module_1 = require("./faculte/faculte.module");
 const immatriculation_module_1 = require("./immatriculation/immatriculation.module");
 const catalogue_module_1 = require("./catalogue/catalogue.module");
 const course_module_1 = require("./course/course.module");
+const notes_module_1 = require("./notes/notes.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -28,13 +29,13 @@ AppModule = __decorate([
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
-                host: process.env.DATABASE_HOST_PROD,
+                host: process.env.DATABASE_HOST,
                 port: +process.env.DATABASE_PORT,
-                username: process.env.DATABASE_USER_PROD,
-                password: process.env.DATABASE_PASSWORD_PROD,
-                database: process.env.DATABASE_NAME_PROD,
+                username: process.env.DATABASE_USER,
+                password: process.env.DATABASE_PASSWORD,
+                database: process.env.DATABASE_NAME,
                 logging: false,
-                synchronize: false,
+                synchronize: true,
                 autoLoadEntities: true,
             }),
             employees_module_1.EmployeesModule,
@@ -47,6 +48,7 @@ AppModule = __decorate([
             faculte_module_1.FaculteModule,
             course_module_1.CourseModule,
             catalogue_module_1.CatalogueModule,
+            notes_module_1.NotesModule,
         ],
         controllers: [],
         providers: [],

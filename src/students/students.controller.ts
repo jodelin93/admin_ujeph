@@ -8,7 +8,7 @@ import {
   Param,
   Delete,
   ParseIntPipe,
-  Query,
+  Query, SetMetadata,
 } from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
@@ -21,6 +21,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import {IS_PUBLIC_KEY} from "../auth/public.decorator";
 
 @ApiBearerAuth()
 @Controller('students')

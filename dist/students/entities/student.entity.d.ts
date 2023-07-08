@@ -1,6 +1,7 @@
 import { Immatriculation } from "src/immatriculation/entities/immatriculation.entity";
 import { Person } from "src/persons/entities/person.entity";
 import { StudentInformationsCompementaires } from "./student.infos.entity";
+import { Note } from "../../notes/entities/note.entity";
 export declare class Student {
     id: number;
     code: string;
@@ -17,4 +18,5 @@ export declare class Student {
     person: Person;
     immatriculation: Immatriculation;
     studentinfos: StudentInformationsCompementaires;
+    notes: Note;
 }

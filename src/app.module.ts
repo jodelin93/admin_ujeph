@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -12,6 +12,7 @@ import { FaculteModule } from './faculte/faculte.module';
 import { ImmatriculationModule } from './immatriculation/immatriculation.module';
 import { CatalogueModule } from './catalogue/catalogue.module';
 import { CourseModule } from './course/course.module';
+import { NotesModule } from './notes/notes.module';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { CourseModule } from './course/course.module';
       password: process.env.DATABASE_PASSWORD_PROD,
       database: process.env.DATABASE_NAME_PROD,
       logging: false,
-      synchronize: false,
+      synchronize: true,
       autoLoadEntities: true,
     }),
     EmployeesModule,
@@ -37,6 +38,7 @@ import { CourseModule } from './course/course.module';
     FaculteModule,
     CourseModule,
     CatalogueModule,
+    NotesModule,
   ],
   controllers: [],
   providers: [],
