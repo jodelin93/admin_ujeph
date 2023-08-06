@@ -46,9 +46,13 @@ __decorate([
     __metadata("design:type", String)
 ], Note.prototype, "remarques", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", String)
 ], Note.prototype, "annee_academique", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false }),
+    __metadata("design:type", String)
+], Note.prototype, "niveau", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: false, nullable: false }),
     __metadata("design:type", Boolean)

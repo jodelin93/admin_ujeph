@@ -21,6 +21,7 @@ const immatriculation_module_1 = require("./immatriculation/immatriculation.modu
 const catalogue_module_1 = require("./catalogue/catalogue.module");
 const course_module_1 = require("./course/course.module");
 const notes_module_1 = require("./notes/notes.module");
+const anneeacademiques_module_1 = require("./anneeacademiques/anneeacademiques.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -49,6 +50,7 @@ AppModule = __decorate([
             course_module_1.CourseModule,
             catalogue_module_1.CatalogueModule,
             notes_module_1.NotesModule,
+            anneeacademiques_module_1.AnneeacademiquesModule,
         ],
         controllers: [],
         providers: [],

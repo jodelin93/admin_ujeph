@@ -13,6 +13,7 @@ import { ImmatriculationModule } from './immatriculation/immatriculation.module'
 import { CatalogueModule } from './catalogue/catalogue.module';
 import { CourseModule } from './course/course.module';
 import { NotesModule } from './notes/notes.module';
+import { AnneeacademiquesModule } from './anneeacademiques/anneeacademiques.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { NotesModule } from './notes/notes.module';
     CourseModule,
     CatalogueModule,
     NotesModule,
+    AnneeacademiquesModule,
   ],
   controllers: [],
   providers: [],

@@ -27,22 +27,22 @@ let NotesService = class NotesService {
         this.faculteService = faculteService;
         this.coursService = coursService;
     }
-    async create(createNoteDto, id_etudiant, id_cours, id_faculte) {
+    async create(createNoteDto, id_etudiant, id_cours, id_faculte, niveau) {
         const etudiant = await this.studentService.findOne(id_etudiant);
         const faculte = await this.faculteService.findOne(id_faculte);
         const cours = await this.coursService.findOne(id_cours);
         const note = this.noteRepo.create(createNoteDto);
-        console.log(etudiant);
         note.etudiantId = etudiant.id;
         note.faculteId = faculte.id;
         note.coursesId = cours.id;
+        note.niveau = niveau;
         return await this.noteRepo.save(note);
     }
     async findAll() {
         return this.noteRepo.find();
     }
-    async findOne(id_etudiant, semestre, annee_academique) {
-        return await this.noteRepo.find({ where: { etudiantId: id_etudiant, semestre, annee_academique } });
+    async findOne(id_etudiant, semestre, annee_academique, niveau) {
+        return await this.noteRepo.find({ where: { etudiantId: id_etudiant, semestre, annee_academique, niveau } });
     }
     async update(id, updateNoteDto) {
         let isreprise = false;

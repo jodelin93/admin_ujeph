@@ -11,7 +11,7 @@ import {CreateFaculteDto} from "../faculte/dto/create-faculte.dto";
 export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 
-  @Post('/:id_etudiant/:id_cours/:id_faculte')
+  @Post('/:id_etudiant/:id_cours/:id_faculte/:niveau')
   @ApiParam({
     name: 'id_etudiant',
     type: 'number',
@@ -27,6 +27,11 @@ export class NotesController {
     type: 'number',
     description:'id faculte'
   })
+  @ApiParam({
+    name: 'niveau',
+    type: 'string',
+    description:'niveau etudiant'
+  })
   @ApiOperation({ description: 'this is the endpoint for Creating  a note' })
   @ApiCreatedResponse({
     description: 'The record has been successfully created.',
@@ -36,11 +41,12 @@ export class NotesController {
       @Body() createNoteDto: CreateNoteDto,
       @Param('id_etudiant',ParseIntPipe) id_etudiant: number,
       @Param('id_cours',ParseIntPipe) id_cours: number,
-      @Param('id_faculte',ParseIntPipe) id_faculte: number
+      @Param('id_faculte',ParseIntPipe) id_faculte: number,
+      @Param('niveau') niveau: string
   )
 
   {
-    return this.notesService.create(createNoteDto,id_etudiant,id_cours,id_faculte);
+    return this.notesService.create(createNoteDto,id_etudiant,id_cours,id_faculte,niveau);
   }
 
   @Get()
@@ -56,7 +62,7 @@ export class NotesController {
     return this.notesService.findAll();
   }
 
-  @Get(':id_etudiant/:semestre/:annee_academique')
+  @Get(':id_etudiant/:semestre/:annee_academique/:niveau')
   @ApiParam({
     name: 'id_etudiant',
     type: 'number',
@@ -72,6 +78,11 @@ export class NotesController {
     type: 'string',
     description:'annee_academique'
   })
+  @ApiParam({
+    name: 'niveau',
+    type: 'string',
+    description:'niveau'
+  })
   @ApiResponse({ type: CreateFaculteDto })
   @ApiOperation({
     description: 'this is the endpoint for retrieving  one faculte',
@@ -79,9 +90,11 @@ export class NotesController {
   findOne(
       @Param('id_etudiant',ParseIntPipe) id_etudiant: string,
       @Param('semestre') semestre: string,
-      @Param('annee_academique') annee_academique: string
+      @Param('annee_academique') annee_academique: string,
+      @Param('niveau') niveau: string
+
   ) {
-    return this.notesService.findOne(id_etudiant,semestre,annee_academique);
+    return this.notesService.findOne(id_etudiant,semestre,annee_academique,niveau);
   }
 
   @Patch(':id')

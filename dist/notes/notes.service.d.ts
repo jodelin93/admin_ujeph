@@ -11,9 +11,9 @@ export declare class NotesService {
     private faculteService;
     private coursService;
     constructor(noteRepo: Repository<Note>, studentService: StudentsService, faculteService: FaculteService, coursService: CourseService);
-    create(createNoteDto: CreateNoteDto, id_etudiant: number, id_cours: number, id_faculte: number): Promise<any>;
+    create(createNoteDto: CreateNoteDto, id_etudiant: number, id_cours: number, id_faculte: number, niveau: string): Promise<any>;
     findAll(): Promise<Note[]>;
-    findOne(id_etudiant: string, semestre: string, annee_academique: string): Promise<Note[]>;
+    findOne(id_etudiant: string, semestre: string, annee_academique: string, niveau: string): Promise<Note[]>;
     update(id: number, updateNoteDto: UpdateNoteDto): Promise<Note>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

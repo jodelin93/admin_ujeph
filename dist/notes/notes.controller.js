@@ -23,14 +23,14 @@ let NotesController = class NotesController {
     constructor(notesService) {
         this.notesService = notesService;
     }
-    create(createNoteDto, id_etudiant, id_cours, id_faculte) {
-        return this.notesService.create(createNoteDto, id_etudiant, id_cours, id_faculte);
+    create(createNoteDto, id_etudiant, id_cours, id_faculte, niveau) {
+        return this.notesService.create(createNoteDto, id_etudiant, id_cours, id_faculte, niveau);
     }
     findAll() {
         return this.notesService.findAll();
     }
-    findOne(id_etudiant, semestre, annee_academique) {
-        return this.notesService.findOne(id_etudiant, semestre, annee_academique);
+    findOne(id_etudiant, semestre, annee_academique, niveau) {
+        return this.notesService.findOne(id_etudiant, semestre, annee_academique, niveau);
     }
     update(id, updateNoteDto) {
         return this.notesService.update(+id, updateNoteDto);
@@ -40,7 +40,7 @@ let NotesController = class NotesController {
     }
 };
 __decorate([
-    (0, common_1.Post)('/:id_etudiant/:id_cours/:id_faculte'),
+    (0, common_1.Post)('/:id_etudiant/:id_cours/:id_faculte/:niveau'),
     (0, swagger_1.ApiParam)({
         name: 'id_etudiant',
         type: 'number',
@@ -56,6 +56,11 @@ __decorate([
         type: 'number',
         description: 'id faculte'
     }),
+    (0, swagger_1.ApiParam)({
+        name: 'niveau',
+        type: 'string',
+        description: 'niveau etudiant'
+    }),
     (0, swagger_1.ApiOperation)({ description: 'this is the endpoint for Creating  a note' }),
     (0, swagger_1.ApiCreatedResponse)({
         description: 'The record has been successfully created.',
@@ -65,8 +70,9 @@ __decorate([
     __param(1, (0, common_1.Param)('id_etudiant', common_1.ParseIntPipe)),
     __param(2, (0, common_1.Param)('id_cours', common_1.ParseIntPipe)),
     __param(3, (0, common_1.Param)('id_faculte', common_1.ParseIntPipe)),
+    __param(4, (0, common_1.Param)('niveau')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_note_dto_1.CreateNoteDto, Number, Number, Number]),
+    __metadata("design:paramtypes", [create_note_dto_1.CreateNoteDto, Number, Number, Number, String]),
     __metadata("design:returntype", void 0)
 ], NotesController.prototype, "create", null);
 __decorate([
@@ -84,7 +90,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], NotesController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id_etudiant/:semestre/:annee_academique'),
+    (0, common_1.Get)(':id_etudiant/:semestre/:annee_academique/:niveau'),
     (0, swagger_1.ApiParam)({
         name: 'id_etudiant',
         type: 'number',
@@ -100,6 +106,11 @@ __decorate([
         type: 'string',
         description: 'annee_academique'
     }),
+    (0, swagger_1.ApiParam)({
+        name: 'niveau',
+        type: 'string',
+        description: 'niveau'
+    }),
     (0, swagger_1.ApiResponse)({ type: create_faculte_dto_1.CreateFaculteDto }),
     (0, swagger_1.ApiOperation)({
         description: 'this is the endpoint for retrieving  one faculte',
@@ -107,8 +118,9 @@ __decorate([
     __param(0, (0, common_1.Param)('id_etudiant', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Param)('semestre')),
     __param(2, (0, common_1.Param)('annee_academique')),
+    __param(3, (0, common_1.Param)('niveau')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", void 0)
 ], NotesController.prototype, "findOne", null);
 __decorate([

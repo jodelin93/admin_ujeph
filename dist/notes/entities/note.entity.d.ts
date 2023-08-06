@@ -11,6 +11,7 @@ export declare class Note {
     notes: string;
     remarques: string;
     annee_academique: string;
+    niveau: string;
     isreprise: boolean;
     createdAt: Date;
     updatedAt: Date;

@@ -18,15 +18,15 @@ export class NotesService {
       private coursService:CourseService
       ) {
   }
-  async create(createNoteDto: CreateNoteDto,id_etudiant:number,id_cours:number,id_faculte:number):Promise<any> {
+  async create(createNoteDto: CreateNoteDto, id_etudiant: number, id_cours: number, id_faculte: number, niveau: string):Promise<any> {
     const etudiant = await this.studentService.findOne(id_etudiant);
     const faculte = await this.faculteService.findOne(id_faculte);
     const cours = await this.coursService.findOne(id_cours);
     const note = this.noteRepo.create(createNoteDto);
-    console.log(etudiant)
     note.etudiantId = etudiant.id;
     note.faculteId = faculte.id;
     note.coursesId = cours.id;
+    note.niveau=niveau;
     return await this.noteRepo.save(note);
   }
 
@@ -34,9 +34,9 @@ export class NotesService {
     return this.noteRepo.find();
   }
 
-  async findOne(id_etudiant:string,semestre:string,annee_academique:string) {
+  async findOne(id_etudiant: string, semestre: string, annee_academique: string, niveau: string) {
 
-    return await this.noteRepo.find({where:{etudiantId:id_etudiant,semestre,annee_academique}})
+    return await this.noteRepo.find({where:{etudiantId:id_etudiant,semestre,annee_academique,niveau}})
   }
 
   async update(id: number, updateNoteDto: UpdateNoteDto) {

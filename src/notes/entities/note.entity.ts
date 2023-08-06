@@ -34,8 +34,11 @@ export class Note {
     @Column({nullable:true})
     remarques: string;
 
-    @Column()
+    @Column({nullable:false})
     annee_academique:string;
+
+    @Column({nullable:false})
+    niveau:string;
 
     @Column({default:false,nullable:false})
     isreprise:boolean;
