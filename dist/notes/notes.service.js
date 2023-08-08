@@ -28,9 +28,9 @@ let NotesService = class NotesService {
         this.coursService = coursService;
     }
     async create(createNoteDto, id_etudiant, id_cours, id_faculte, niveau) {
-        const etudiant = await this.studentService.findOne(id_etudiant);
+        const etudiant = await this.studentService.findOne({ id: id_etudiant });
         const faculte = await this.faculteService.findOne(id_faculte);
-        const cours = await this.coursService.findOne(id_cours);
+        const cours = await this.coursService.findOne({ id: id_cours });
         const note = this.noteRepo.create(createNoteDto);
         note.etudiantId = etudiant.id;
         note.faculteId = faculte.id;
