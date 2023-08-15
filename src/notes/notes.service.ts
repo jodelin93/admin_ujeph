@@ -39,6 +39,11 @@ export class NotesService {
     return await this.noteRepo.find({where:{etudiantId:id_etudiant,semestre,annee_academique,niveau}})
   }
 
+  async findOneNote(id_etudiant: string, semestre: string, annee_academique: string, niveau: string,id_cours:string) {
+
+    return await this.noteRepo.findOne({where:{etudiantId:id_etudiant,semestre,annee_academique,niveau,coursesId:id_cours}})
+  }
+
   async update(id: number, updateNoteDto: UpdateNoteDto) {
      let isreprise=false
     if(updateNoteDto.isreprise) {

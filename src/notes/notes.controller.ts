@@ -83,9 +83,9 @@ export class NotesController {
     type: 'string',
     description:'niveau'
   })
-  @ApiResponse({ type: CreateFaculteDto })
+  @ApiResponse({ type: CreateNoteDto })
   @ApiOperation({
-    description: 'this is the endpoint for retrieving  one faculte',
+    description: 'this is the endpoint for retrieving  all notes',
   })
   findOne(
       @Param('id_etudiant',ParseIntPipe) id_etudiant: string,
@@ -95,6 +95,47 @@ export class NotesController {
 
   ) {
     return this.notesService.findOne(id_etudiant,semestre,annee_academique,niveau);
+  }
+
+  @Get(':id_etudiant/:semestre/:annee_academique/:niveau/:id_cours')
+  @ApiParam({
+    name: 'id_etudiant',
+    type: 'number',
+    description:'id etudiant'
+  })
+  @ApiParam({
+    name: 'semestre',
+    type: 'string',
+    description:'semestre'
+  })
+  @ApiParam({
+    name: 'annee_academique',
+    type: 'string',
+    description:'annee_academique'
+  })
+  @ApiParam({
+    name: 'niveau',
+    type: 'string',
+    description:'niveau'
+  })
+  @ApiParam({
+    name: 'id_cours',
+    type: 'number',
+    description:'id cours'
+  })
+  @ApiResponse({ type: CreateNoteDto })
+  @ApiOperation({
+    description: 'this is the endpoint for retrieving  one note',
+  })
+  findOneNote(
+      @Param('id_etudiant',ParseIntPipe) id_etudiant: string,
+      @Param('semestre') semestre: string,
+      @Param('annee_academique') annee_academique: string,
+      @Param('niveau') niveau: string,
+      @Param('id_cours') id_cours: string
+
+  ) {
+    return this.notesService.findOneNote(id_etudiant,semestre,annee_academique,niveau,id_cours);
   }
 
   @Patch(':id')

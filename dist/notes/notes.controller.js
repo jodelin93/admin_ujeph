@@ -18,7 +18,6 @@ const notes_service_1 = require("./notes.service");
 const create_note_dto_1 = require("./dto/create-note.dto");
 const update_note_dto_1 = require("./dto/update-note.dto");
 const swagger_1 = require("@nestjs/swagger");
-const create_faculte_dto_1 = require("../faculte/dto/create-faculte.dto");
 let NotesController = class NotesController {
     constructor(notesService) {
         this.notesService = notesService;
@@ -31,6 +30,9 @@ let NotesController = class NotesController {
     }
     findOne(id_etudiant, semestre, annee_academique, niveau) {
         return this.notesService.findOne(id_etudiant, semestre, annee_academique, niveau);
+    }
+    findOneNote(id_etudiant, semestre, annee_academique, niveau, id_cours) {
+        return this.notesService.findOneNote(id_etudiant, semestre, annee_academique, niveau, id_cours);
     }
     update(id, updateNoteDto) {
         return this.notesService.update(+id, updateNoteDto);
@@ -111,9 +113,9 @@ __decorate([
         type: 'string',
         description: 'niveau'
     }),
-    (0, swagger_1.ApiResponse)({ type: create_faculte_dto_1.CreateFaculteDto }),
+    (0, swagger_1.ApiResponse)({ type: create_note_dto_1.CreateNoteDto }),
     (0, swagger_1.ApiOperation)({
-        description: 'this is the endpoint for retrieving  one faculte',
+        description: 'this is the endpoint for retrieving  all notes',
     }),
     __param(0, (0, common_1.Param)('id_etudiant', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Param)('semestre')),
@@ -123,6 +125,46 @@ __decorate([
     __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", void 0)
 ], NotesController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)(':id_etudiant/:semestre/:annee_academique/:niveau/:id_cours'),
+    (0, swagger_1.ApiParam)({
+        name: 'id_etudiant',
+        type: 'number',
+        description: 'id etudiant'
+    }),
+    (0, swagger_1.ApiParam)({
+        name: 'semestre',
+        type: 'string',
+        description: 'semestre'
+    }),
+    (0, swagger_1.ApiParam)({
+        name: 'annee_academique',
+        type: 'string',
+        description: 'annee_academique'
+    }),
+    (0, swagger_1.ApiParam)({
+        name: 'niveau',
+        type: 'string',
+        description: 'niveau'
+    }),
+    (0, swagger_1.ApiParam)({
+        name: 'id_cours',
+        type: 'number',
+        description: 'id cours'
+    }),
+    (0, swagger_1.ApiResponse)({ type: create_note_dto_1.CreateNoteDto }),
+    (0, swagger_1.ApiOperation)({
+        description: 'this is the endpoint for retrieving  one note',
+    }),
+    __param(0, (0, common_1.Param)('id_etudiant', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Param)('semestre')),
+    __param(2, (0, common_1.Param)('annee_academique')),
+    __param(3, (0, common_1.Param)('niveau')),
+    __param(4, (0, common_1.Param)('id_cours')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String, String, String]),
+    __metadata("design:returntype", void 0)
+], NotesController.prototype, "findOneNote", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     (0, swagger_1.ApiParam)({
