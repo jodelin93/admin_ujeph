@@ -62,7 +62,7 @@ export class NotesController {
     return this.notesService.findAll();
   }
 
-  @Get(':id_etudiant/:semestre/:annee_academique/:niveau')
+  @Get(':id_etudiant/:semestre/:annee_academique/:niveau/:id_faculte')
   @ApiParam({
     name: 'id_etudiant',
     type: 'number',
@@ -83,6 +83,11 @@ export class NotesController {
     type: 'string',
     description:'niveau'
   })
+  @ApiParam({
+    name: 'id_faculte',
+    type: 'string',
+    description:'id faculte'
+  })
   @ApiResponse({ type: CreateNoteDto })
   @ApiOperation({
     description: 'this is the endpoint for retrieving  all notes',
@@ -91,13 +96,14 @@ export class NotesController {
       @Param('id_etudiant',ParseIntPipe) id_etudiant: string,
       @Param('semestre') semestre: string,
       @Param('annee_academique') annee_academique: string,
-      @Param('niveau') niveau: string
+      @Param('niveau') niveau: string,
+      @Param('id_faculte',ParseIntPipe) id_faculte: string,
 
   ) {
-    return this.notesService.findOne(id_etudiant,semestre,annee_academique,niveau);
+    return this.notesService.findOne(id_etudiant,semestre,annee_academique,niveau,id_faculte);
   }
 
-  @Get(':id_etudiant/:semestre/:annee_academique/:niveau/:id_cours')
+  @Get(':id_etudiant/:semestre/:annee_academique/:niveau/:id_cours/:id_faculte')
   @ApiParam({
     name: 'id_etudiant',
     type: 'number',
@@ -123,6 +129,11 @@ export class NotesController {
     type: 'number',
     description:'id cours'
   })
+  @ApiParam({
+    name: 'id_faculte',
+    type: 'number',
+    description:'id faculte'
+  })
   @ApiResponse({ type: CreateNoteDto })
   @ApiOperation({
     description: 'this is the endpoint for retrieving  one note',
@@ -132,10 +143,11 @@ export class NotesController {
       @Param('semestre') semestre: string,
       @Param('annee_academique') annee_academique: string,
       @Param('niveau') niveau: string,
-      @Param('id_cours') id_cours: string
+      @Param('id_cours') id_cours: string,
+      @Param('id_faculte',ParseIntPipe) id_faculte: string
 
   ) {
-    return this.notesService.findOneNote(id_etudiant,semestre,annee_academique,niveau,id_cours);
+    return this.notesService.findOneNote(id_etudiant,semestre,annee_academique,niveau,id_cours,id_faculte);
   }
 
   @Patch(':id')

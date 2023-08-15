@@ -34,14 +34,14 @@ export class NotesService {
     return this.noteRepo.find();
   }
 
-  async findOne(id_etudiant: string, semestre: string, annee_academique: string, niveau: string) {
+  async findOne(id_etudiant: string, semestre: string, annee_academique: string, niveau: string,id_faculte: string) {
 
-    return await this.noteRepo.find({where:{etudiantId:id_etudiant,semestre,annee_academique,niveau}})
+    return await this.noteRepo.find({where:{etudiantId:id_etudiant,semestre,annee_academique,niveau,faculteId:id_faculte}})
   }
 
-  async findOneNote(id_etudiant: string, semestre: string, annee_academique: string, niveau: string,id_cours:string) {
+  async findOneNote(id_etudiant: string, semestre: string, annee_academique: string, niveau: string,id_cours:string,id_faculte: string) {
 
-    return await this.noteRepo.findOne({where:{etudiantId:id_etudiant,semestre,annee_academique,niveau,coursesId:id_cours}})
+    return await this.noteRepo.findOne({where:{etudiantId:id_etudiant,semestre,annee_academique,niveau,coursesId:id_cours,faculteId:id_faculte}})
   }
 
   async update(id: number, updateNoteDto: UpdateNoteDto) {

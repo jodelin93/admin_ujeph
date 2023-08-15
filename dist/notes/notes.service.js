@@ -41,11 +41,11 @@ let NotesService = class NotesService {
     async findAll() {
         return this.noteRepo.find();
     }
-    async findOne(id_etudiant, semestre, annee_academique, niveau) {
-        return await this.noteRepo.find({ where: { etudiantId: id_etudiant, semestre, annee_academique, niveau } });
+    async findOne(id_etudiant, semestre, annee_academique, niveau, id_faculte) {
+        return await this.noteRepo.find({ where: { etudiantId: id_etudiant, semestre, annee_academique, niveau, faculteId: id_faculte } });
     }
-    async findOneNote(id_etudiant, semestre, annee_academique, niveau, id_cours) {
-        return await this.noteRepo.findOne({ where: { etudiantId: id_etudiant, semestre, annee_academique, niveau, coursesId: id_cours } });
+    async findOneNote(id_etudiant, semestre, annee_academique, niveau, id_cours, id_faculte) {
+        return await this.noteRepo.findOne({ where: { etudiantId: id_etudiant, semestre, annee_academique, niveau, coursesId: id_cours, faculteId: id_faculte } });
     }
     async update(id, updateNoteDto) {
         let isreprise = false;
