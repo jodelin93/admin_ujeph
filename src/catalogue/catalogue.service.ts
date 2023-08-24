@@ -34,7 +34,7 @@ export class CatalogueService extends AbstracService {
 
     if (faculte && teacher && courses) {
       const catalogueSaved = await this.catalogueRepo.findOne({
-        where: { coursesId: courses.id, semestre: data.semestre },
+        where: { coursesId: courses.id, semestre: data.semestre,faculteId:faculte.id },
       });
       if (catalogueSaved) {
         throw new BadRequestException(
