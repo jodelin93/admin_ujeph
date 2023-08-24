@@ -25,7 +25,7 @@ import { AnneeacademiquesModule } from './anneeacademiques/anneeacademiques.modu
       username: process.env.DATABASE_USER_PROD,
       password: process.env.DATABASE_PASSWORD_PROD,
       database: process.env.DATABASE_NAME_PROD,
-      logging: false,
+      logging: true,
       synchronize: true,
       autoLoadEntities: true,
     }),
