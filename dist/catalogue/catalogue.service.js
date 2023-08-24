@@ -44,7 +44,7 @@ let CatalogueService = class CatalogueService extends abstract_service_1.Abstrac
         });
         if (faculte && teacher && courses) {
             const catalogueSaved = await this.catalogueRepo.findOne({
-                where: { coursesId: courses.id, semestre: data.semestre, faculteId: faculte.id },
+                where: { coursesId: courses.id, semestre: data.semestre, faculteId: faculte.id, annee_academique: data.annee_academique },
             });
             if (catalogueSaved) {
                 throw new common_1.BadRequestException('ce cours a deja ete attribuer a cette faculte pour ce meme semestre');
